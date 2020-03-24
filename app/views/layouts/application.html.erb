@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Adopt Don't Shop</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+  </head>
+
+  <body>
+    <ul>
+      <li><%= link_to "All Pets", "/pets"%></li>
+      <li><%= link_to "All Shelters", "/shelters"%></li>
+    </ul>
+    <%= yield %>
+
+  </body>
+</html>

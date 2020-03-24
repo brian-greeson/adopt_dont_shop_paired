@@ -1,0 +1,25 @@
+<h2>
+  <%= form_tag '/shelters' do %>
+    <%= label_tag :name %>
+    <br>
+    <%= text_field_tag :name %>
+    <br>
+    <%= label_tag :address %>
+    <br>
+    <%= text_field_tag :address %>
+    <br>
+    <%= label_tag :city %>
+    <br>
+    <%= text_field_tag :city %>
+    <br>
+    <%= label_tag :state %>
+    <br>
+    <%= text_field_tag :state %>
+    <br>
+    <%= label_tag :zip %>
+    <br>
+    <%= text_field_tag :zip %>
+    <br>
+    <%= submit_tag 'Create Shelter' %>
+  <% end %>
+</h2>

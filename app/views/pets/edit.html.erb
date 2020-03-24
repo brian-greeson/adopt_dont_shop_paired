@@ -1,0 +1,25 @@
+<h2>
+  <%= form_tag "/pets/#{@pet.id}", method: :patch do %>
+    <%= label_tag :name %>
+    <br>
+    <%= text_field_tag :name, @pet.name %>
+    <br>
+    <%= label_tag :image %>
+    <br>
+    <%= text_field_tag :image, @pet.image %>
+    <br>
+    <%= label_tag :description %>
+    <br>
+    <%= text_field_tag :description, @pet.description %>
+    <br>
+    <%= label_tag :approximate_age %>
+    <br>
+    <%= text_field_tag :approximate_age, @pet.approximate_age %>
+    <br>
+    <%= label_tag :sex %>
+    <br>
+    <%= text_field_tag :sex, @pet.sex %>
+    <br>
+    <%= submit_tag 'Update Pet' %>
+  <% end %>
+</h2>
