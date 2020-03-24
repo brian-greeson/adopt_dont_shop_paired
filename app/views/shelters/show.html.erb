@@ -6,5 +6,6 @@
 <ul>
   <li><%= link_to "Available Pets", "/shelters/#{@shelter.id}/pets"%>
   <li><%= link_to 'Update Shelter', "/shelters/#{@shelter.id}/edit" %>
+  <li><%= link_to 'Add Review', "/shelters/#{@shelter.id}/reviews/new" %>
   <li><%= link_to 'Delete', "/shelters/#{@shelter.id}", method: :delete %>
 </ul>
