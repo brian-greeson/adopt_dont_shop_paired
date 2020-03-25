@@ -3,6 +3,16 @@
 <p>City: <%= @shelter.city %></p>
 <p>State: <%= @shelter.state %></p>
 <p>Zip: <%= @shelter.zip %></p>
+
+<h2>Reviews</h2>
+<% @shelter.shelter_reviews.each do |review| %>
+  <article class="shelter_reviews">
+    <h3><%= review.title %></h3>
+    <p><%= review.rating %></p>
+    <p><%= review.content %></p>
+    <%= image_tag(review.image, width: "200") %>
+  </article>
+<% end %>
 <ul>
   <li><%= link_to "Available Pets", "/shelters/#{@shelter.id}/pets"%>
   <li><%= link_to 'Update Shelter', "/shelters/#{@shelter.id}/edit" %>
