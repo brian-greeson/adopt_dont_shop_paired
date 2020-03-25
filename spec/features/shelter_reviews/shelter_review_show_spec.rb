@@ -25,6 +25,5 @@ RSpec.describe "As a visitor", type: :feature do
     click_button "Submit Review"
     expect(current_path).to eq("/shelters/#{shelter_1.id}")
     expect(page).to have_content('Marge')
-    save_and_open_page
   end
 end
