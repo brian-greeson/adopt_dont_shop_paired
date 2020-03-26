@@ -11,6 +11,9 @@
     <p><%= review.rating %></p>
     <p><%= review.content %></p>
     <%= image_tag(review.image, width: "200") %>
+    <ul>
+      <li><%= link_to 'Edit Review', "/reviews/#{review.id}/edit" %>
+    </ul>
   </article>
 <% end %>
 <ul>
