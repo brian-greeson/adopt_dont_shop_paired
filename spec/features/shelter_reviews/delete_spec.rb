@@ -2,7 +2,13 @@ require "rails_helper"
 
 RSpec.describe "when A user visits a shelter show page" do
   it "I can click a link next to each shelter review to delete the review" do
-    shelter_1 = Shelter.create(name: "Denver Animal Shelter", address: "1241 W Bayaud Ave", city: "Denver", state: "CO", zip: "80223")
+    shelter_1 = Shelter.create(
+      name: "Denver Animal Shelter",
+      address: "1241 W Bayaud Ave",
+      city: "Denver",
+      state: "CO",
+      zip: "80223"
+    )
     review_1 =  shelter_1.shelter_reviews.create(
       title: "review 1 title",
       content: "review 1 content",
