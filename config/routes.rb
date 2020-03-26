@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root 'shelters#index'
   get '/shelters', to: 'shelters#index'
   get '/shelters/new', to: 'shelters#new'
-  get '/shelters/:id', to: 'shelters#show'
+  get '/shelters/:id', to: 'shelters#show', as: 'shelters_show'
 
   get '/shelters/:id/edit', to: 'shelters#edit'
   patch '/shelters/:id', to: 'shelters#update'
@@ -28,5 +28,7 @@ Rails.application.routes.draw do
 
   get '/reviews/:review_id/edit', to: 'shelter_reviews#edit', as: 'shelter_reviews_edit'
   patch '/reviews/:review_id', to: 'shelter_reviews#update', as: 'shelter_reviews_update'
+
+  delete '/reviews/:review_id', to: 'shelter_reviews#destroy', as: 'shelter_reviews_destroy'
 
 end
