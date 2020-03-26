@@ -4,8 +4,6 @@ class ShelterReviewsController < ApplicationController
   end
 
   def create
-    @shelter = Shelter.find(params[:id])
-
     shelter_review = ShelterReview.new({
       title: shelter_review_params[:title],
       image: shelter_review_params[:image],
@@ -17,6 +15,7 @@ class ShelterReviewsController < ApplicationController
     if shelter_review.save
       redirect_to "/shelters/#{params[:id]}"
     else
+      @shelter = Shelter.find(params[:id])
       flash.now[:ding_dong] = "Please include a title and content for your review."
       render :new
     end
