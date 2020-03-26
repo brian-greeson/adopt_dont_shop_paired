@@ -21,6 +21,26 @@ class ShelterReviewsController < ApplicationController
     end
   end
 
+  def edit
+    @shelter_review = ShelterReview.find(params[:review_id])
+  end
+
+  def update
+    @shelter_review = ShelterReview.find(params[:review_id])
+    if @shelter_review.update({
+        title: shelter_review_params[:title],
+        content: shelter_review_params[:content],
+        image: shelter_review_params[:image],
+        rating: shelter_review_params[:rating],
+      })
+      redirect_to "/shelters/#{@shelter_review.shelter_id}"
+    else
+      @shelter_review = ShelterReview.find(params[:review_id])
+      flash.now[:ding_dong] = "Please include a title and content for your review."
+      render :edit
+    end
+  end
+
   private
   def shelter_review_params
     params.permit(:title, :rating, :content, :image)
