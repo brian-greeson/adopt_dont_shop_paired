@@ -41,19 +41,18 @@ RSpec.describe "As a visitor", type: :feature do
       expect(page).to have_selector('input[type=submit]')
     end
 
-    # it "I cannot create a review without content" do
-    #   shelter_1 = Shelter.create(name: "Denver Animal Shelter", address: "1241 W Bayaud Ave", city: "Denver", state: "CO", zip: "80223")
-    #
-    #   visit "/shelters/#{shelter_1.id}/reviews/new"
-    #
-    #   fill_in :title, with: 'Go Marge!'
-    #   select 5, from: :rating
-    #   fill_in :image, with: "https://s3.amazonaws.com/petcoach-api-prod-uploads/uploads/noslidesarticleimages/0a4d267ac1b94cdc12690b7f503822bf.jpg"
-    #
-    #   click_button "Submit Review"
-    #   expect(page).to have_content('Please include a title and content for your review.')
-    #   expect(current_path).to eq("/shelters/#{shelter_1.id}/reviews/new")
-    #   expect(page).to have_button('Add Review')
-    # end
+    it "I cannot create a review without content" do
+      shelter_1 = Shelter.create(name: "Denver Animal Shelter", address: "1241 W Bayaud Ave", city: "Denver", state: "CO", zip: "80223")
+
+      visit "/shelters/#{shelter_1.id}/reviews/new"
+
+      fill_in :title, with: 'Go Marge!'
+      select 5, from: :rating
+      fill_in :image, with: "https://s3.amazonaws.com/petcoach-api-prod-uploads/uploads/noslidesarticleimages/0a4d267ac1b94cdc12690b7f503822bf.jpg"
+
+      click_button "Submit Review"
+      expect(page).to have_content('Please include a title and content for your review.')
+      expect(page).to have_selector('input[type=submit]')
+    end
   end
 end
