@@ -14,7 +14,7 @@
     <%= image_tag(review.image, width: "200") %>
     <ul>
       <li><%= link_to 'Edit Review', "/reviews/#{review.id}/edit" %>
-      <li><%= link_to 'Delete Review', shelter_reviews_destroy_path(review), method: :delete %></li>
+      <li><%= link_to 'Delete Review', "/reviews/#{review.id}", method: :delete %></li>
     </ul>
   </article>
 <% end %>
