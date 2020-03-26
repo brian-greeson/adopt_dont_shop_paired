@@ -9,14 +9,14 @@ RSpec.describe "when A user visits a shelter show page" do
       rating: 1,
       image: "https://s3.amazonaws.com/petcoach-api-prod-uploads/uploads/noslidesarticleimages/0a4d267ac1b94cdc12690b7f503822bf.jpg"
     )
-    review_2 =  shelter_2.shelter_reviews.create(
+    review_2 =  shelter_1.shelter_reviews.create(
       title: "review 2 title",
       content: "review 2 content",
       rating: 2,
       image: "https://s3.amazonaws.com/petcoach-api-prod-uploads/uploads/noslidesarticleimages/0a4d267ac1b94cdc12690b7f503822bf.jpg"
     )
 
-    visit "/sheleters/#{shelter_1.id}"
+    visit "/shelters/#{shelter_1.id}"
 
     within("#review-#{review_1.id}-details") do
       click_link "Delete Review"
