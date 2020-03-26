@@ -9,7 +9,7 @@ RSpec.describe "when A user visits a shelter show page" do
       state: "CO",
       zip: "80223"
     )
-    review_1 =  shelter_1.shelter_reviews.create(
+    review_1 = shelter_1.shelter_reviews.create(
       title: "review 1 title",
       content: "review 1 content",
       rating: 1,
@@ -21,20 +21,16 @@ RSpec.describe "when A user visits a shelter show page" do
       rating: 2,
       image: "https://s3.amazonaws.com/petcoach-api-prod-uploads/uploads/noslidesarticleimages/0a4d267ac1b94cdc12690b7f503822bf.jpg"
     )
-
     visit "/shelters/#{shelter_1.id}"
-
     within("#review-#{review_1.id}-details") do
       click_link "Delete Review"
     end
 
-    expect(current_path).to eq("/shetlers/#{shelter_1.id}")
+    expect(current_path).to eq("/shelters/#{shelter_1.id}")
 
     within(".shelter_reviews") do
       expect(page).to_not have_content(review_1.title)
       expect(page).to have_content(review_2.title)
     end
-
   end
-
 end
