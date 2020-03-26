@@ -30,8 +30,8 @@ RSpec.describe "A user I visit " do
       click_link "Add Favorite"
 
       expect(current_path).to eq(pets_show_path(pet_1))
-      within("p.flash-message") do
-        expect(page).to have_content("#{pet_1.name} has been added to your favorites list ❤️ ")
+      within(".flash-message") do
+        expect(page).to have_content("#{pet_1.name} has been added to your favorites list ❤️")
       end
       expect(page).to have_content("Favorites: 1")
   end
