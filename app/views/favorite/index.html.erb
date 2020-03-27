@@ -1,0 +1,6 @@
+<h1>My Favorites ❤️</h1>
+<% @pets.each do |pet| %>
+  <img><%= image_tag(pet.image, width: "200") %></img>
+  <h2>Name: <%= link_to "#{pet.name}", "/pets/#{pet.id}"%></h2>
+  <br>
+<% end %>
