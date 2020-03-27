@@ -7,6 +7,11 @@ class FavoriteController < ApplicationController
     redirect_to "/pets/#{params[:pet_id]}"
   end
 
+  def index
+    @pets = []
+    Pet.find_each do |pet|
+      pet_id_string = pet.id.to_s
+      @pets << pet if favorite.contents.include?(pet_id_string)
+    end
+  end
 end
-# flash[:notice] = "You now have #{session[:favorite][song_id_str]} copy of #{song.title} in your cart."
-# pet_id_string = pet.id.to_s
