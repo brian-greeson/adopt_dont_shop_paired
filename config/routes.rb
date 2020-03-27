@@ -33,4 +33,5 @@ Rails.application.routes.draw do
 
   patch '/favorites/:pet_id', to: 'favorite#update'
 
+  get '/favorites', to: 'favorite#index'
 end
