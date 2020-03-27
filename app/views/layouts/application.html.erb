@@ -14,7 +14,7 @@
     <ul>
       <li><%= link_to "All Pets", "/pets"%></li>
       <li><%= link_to "All Shelters", "/shelters"%></li>
-      <li>Favorites: <%= favorite.total_count %></li>
+      <li><%= link_to "Favorites: #{favorite.total_count}", "/favorites"%></li>
     </ul>
 
     <%= yield %>
