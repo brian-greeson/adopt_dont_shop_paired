@@ -1,6 +1,12 @@
-<h1>My Favorites ❤️</h1>
+<h1><%= @heading %></h1>
+<%= link_to "Remove All", "/favorites", method: :delete %>
 <% @pets.each do |pet| %>
+<article id="pet-<%= pet.id %>-details">
   <img><%= image_tag(pet.image, width: "200") %></img>
   <h2>Name: <%= link_to "#{pet.name}", "/pets/#{pet.id}"%></h2>
+  <ul>
+    <li><%= link_to 'Remove', "/favorites/#{pet.id}", method: :delete %>
+  </ul>
   <br>
+</article>
 <% end %>
