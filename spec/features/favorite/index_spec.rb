@@ -70,4 +70,107 @@ RSpec.describe "As a vistor When I have added a pet to my favorite list" do
     expect(page).to have_content("Favorites: 0")
     expect(page).to have_content("Pet Removed from Favorites! 💔")
   end
+
+  it "I can visit the favorite index page and can click a link to unfavorite each pet" do
+    shelter_1 = Shelter.create(
+      name: "Denver Animal Shelter",
+      address: "1241 W Bayaud Ave",
+      city: "Denver",
+      state: "CO", zip: "80223"
+    )
+    pet_1 = shelter_1.pets.create(
+      image: "https://upload.wikimedia.org/wikipedia/commons/f/f1/Jack_Russell_Terrier_1.jpg",
+      name: "Spot",
+      approximate_age: "51",
+      sex: "male"
+    )
+    pet_2 = shelter_1.pets.create(
+      image: "https://upload.wikimedia.org/wikipedia/commons/f/f1/Jack_Russell_Terrier_2.jpg",
+      name: "Tops 2",
+      approximate_age: "2",
+      sex: "male"
+    )
+    visit "/pets/#{pet_1.id}"
+    click_link "Add Favorite"
+    expect(page).to have_content("Favorites: 1")
+    visit "/pets/#{pet_2.id}"
+    click_link "Add Favorite"
+    expect(page).to have_content("Favorites: 2")
+
+    visit "/favorites"
+
+    within "#pet-#{pet_1.id}-details" do
+      expect(page).to have_link("Remove")
+      click_link "Remove"
+    end
+
+    expect(page).to_not have_content(pet_1.name)
+
+    within "#pet-#{pet_2.id}-details" do
+      expect(page).to have_link("Remove")
+      click_link "Remove"
+    end
+
+    expect(page).to_not have_content(pet_2.name)
+  end
+
+  it "I can visit the favorite index page and see text stating that i have no favorite pets" do
+    shelter_1 = Shelter.create(
+      name: "Denver Animal Shelter",
+      address: "1241 W Bayaud Ave",
+      city: "Denver",
+      state: "CO", zip: "80223"
+    )
+    pet_1 = shelter_1.pets.create(
+      image: "https://upload.wikimedia.org/wikipedia/commons/f/f1/Jack_Russell_Terrier_1.jpg",
+      name: "Spot",
+      approximate_age: "51",
+      sex: "male"
+    )
+
+    visit "/favorites"
+
+    expect(page).to have_content("You have no favorite pets 💔")
+
+    visit "/pets/#{pet_1.id}"
+    click_link "Add Favorite"
+    visit "/favorites"
+
+    expect(page).to_not have_content("You have no favorite pets 💔")
+  end
+
+  it "I can visit the favorite index page and see text stating that i have no favorite pets" do
+    shelter_1 = Shelter.create(
+      name: "Denver Animal Shelter",
+      address: "1241 W Bayaud Ave",
+      city: "Denver",
+      state: "CO", zip: "80223"
+    )
+    pet_1 = shelter_1.pets.create(
+      image: "https://upload.wikimedia.org/wikipedia/commons/f/f1/Jack_Russell_Terrier_1.jpg",
+      name: "Spot",
+      approximate_age: "51",
+      sex: "male"
+    )
+    pet_2 = shelter_1.pets.create(
+      image: "https://upload.wikimedia.org/wikipedia/commons/f/f1/Jack_Russell_Terrier_2.jpg",
+      name: "Tops 2",
+      approximate_age: "2",
+      sex: "male"
+    )
+    visit "/pets/#{pet_1.id}"
+    click_link "Add Favorite"
+    expect(page).to have_content("Favorites: 1")
+    visit "/pets/#{pet_2.id}"
+    click_link "Add Favorite"
+
+    visit "/favorites"
+
+    click_link "Remove All"
+
+    expect(current_path).to eq("/favorites")
+    expect(page).to have_content("Favorites: 0")
+    expect(page).to_not have_content(pet_1.name)
+    expect(page).to_not have_content(pet_2.name)
+  end
 end
