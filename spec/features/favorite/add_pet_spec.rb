@@ -25,6 +25,7 @@ RSpec.describe "A user I visit " do
       click_link("Favorites: 0")
       expect(current_path).to eq("/favorites")
   end
+  
   it "Pets show page I can click a link to favorite that pet" do
     shelter_1 = Shelter.create(name: "Denver Animal Shelter", address: "1241 W Bayaud Ave", city: "Denver", state: "CO", zip: "80223")
 
