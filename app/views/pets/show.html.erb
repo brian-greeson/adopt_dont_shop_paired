@@ -5,13 +5,6 @@
 <p>Approximate Age: <%= @pet.approximate_age %></p>
 <p>Sex: <%= @pet.sex %></p>
 <p>Adoption Status: <%= @pet.adoption_status %></p>
-<!-- if favorites.include?(pet_id)
-  @favorite_link_text = "Remove Favorite"
-  @favorite_link_method = :delete
-else
-  @favorite_link_text = "Add Favorite"
-  @favorite_link_method = :patch
-end -->
 <ul>
   <li><%= link_to @favorite_link[:favorite_link_text],
                   "/favorites/#{@pet.id}",
