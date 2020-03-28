@@ -1,5 +1,6 @@
 <h1><%= @heading %></h1>
 <%= link_to "Remove All", "/favorites", method: :delete %>
+<%= link_to "Start Application", "/pet_applications/new" %>
 <% @pets.each do |pet| %>
 <article id="pet-<%= pet.id %>-details">
   <img><%= image_tag(pet.image, width: "200") %></img>
