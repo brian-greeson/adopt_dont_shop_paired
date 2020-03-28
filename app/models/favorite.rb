@@ -9,6 +9,10 @@ class Favorite
     @contents << pet_id.to_s
   end
 
+  def remove_pet(pet_id)
+    @contents.delete(pet_id.to_s)
+  end
+
   def total_count
     @contents.count
   end
