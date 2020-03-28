@@ -14,4 +14,6 @@ class FavoriteController < ApplicationController
       @pets << pet if favorite.contents.include?(pet_id_string)
     end
   end
+
+
 end

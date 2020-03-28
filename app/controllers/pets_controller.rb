@@ -9,6 +9,7 @@ class PetsController < ApplicationController
 
   def show
     @pet = Pet.find(params[:pet_id])
+    @favorite_link = favorite.link_text_and_method(@pet.id)
   end
 
   def create
@@ -37,7 +38,7 @@ class PetsController < ApplicationController
       approximate_age: pet_params[:approximate_age],
       sex: pet_params[:sex],
       })
-      
+
     redirect_to "/pets/#{pet.id}"
   end
 
