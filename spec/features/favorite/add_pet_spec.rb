@@ -43,8 +43,4 @@ RSpec.describe "A user I visit " do
       end
       expect(page).to have_link("Favorites: 1")
   end
-
-  it "I can  " do
-
-  end
 end
