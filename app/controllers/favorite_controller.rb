@@ -8,10 +8,14 @@ class FavoriteController < ApplicationController
   end
 
   def index
+    @heading = "You have no favorite pets 💔"
     @pets = []
-    Pet.find_each do |pet|
-      pet_id_string = pet.id.to_s
-      @pets << pet if favorite.contents.include?(pet_id_string)
+    if !favorite.contents.empty?
+      @heading = "My Favorites ❤️"
+      Pet.find_each do |pet|
+        pet_id_string = pet.id.to_s
+        @pets << pet if favorite.contents.include?(pet_id_string)
+      end
     end
   end
 
@@ -20,7 +24,11 @@ class FavoriteController < ApplicationController
     favorite.remove_pet(pet.id)
     session[:favorite] = favorite.contents
     flash[:ding_dong] = "Pet Removed from Favorites! 💔"
-    redirect_to "/pets/#{params[:pet_id]}"
+    redirect_back fallback_location: root_path
   end
 
+  def destroy_all
+    session[:favorite].clear
+    redirect_to "/favorites"
+  end
 end
