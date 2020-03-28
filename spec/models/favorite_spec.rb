@@ -28,4 +28,12 @@ RSpec.describe Favorite do
     expect(favorite.link_text_and_method("1")).to eq(remove_favorite_link)
     expect(favorite.link_text_and_method("4")).to eq(add_favorite_link)
   end
+
+  it ".remove_pet" do
+    favorite = Favorite.new(["1","2","3"])
+    favorite.remove_pet(1)
+
+    expect(favorite.contents).to eq(["2","3"])
+  end
+
 end
