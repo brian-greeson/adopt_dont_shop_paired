@@ -17,6 +17,8 @@ class FavoriteController < ApplicationController
         @pets << pet if favorite.contents.include?(pet_id_string)
       end
     end
+
+    @pets_with_applications = PetApplication.pets
   end
 
   def destroy

@@ -173,4 +173,61 @@ RSpec.describe "As a vistor When I have added a pet to my favorite list" do
     expect(page).to_not have_content(pet_1.name)
     expect(page).to_not have_content(pet_2.name)
   end
+
+  it "on the Favorites Index page I can see names of pets that have at least one application; pet names are links to their show page" do
+    shelter_1 = Shelter.create(
+      name: "Denver Animal Shelter",
+      address: "1241 W Bayaud Ave",
+      city: "Denver",
+      state: "CO", zip: "80223"
+    )
+    pet_1 = shelter_1.pets.create(
+      image: "https://upload.wikimedia.org/wikipedia/commons/f/f1/Jack_Russell_Terrier_1.jpg",
+      name: "Spot",
+      approximate_age: "5",
+      sex: "male"
+    )
+    pet_2 = shelter_1.pets.create(
+      image: "https://upload.wikimedia.org/wikipedia/commons/f/f1/Jack_Russell_Terrier_2.jpg",
+      name: "Spike",
+      approximate_age: "3",
+      sex: "male"
+    )
+    visit "/pets/#{pet_1.id}"
+    click_link "Add Favorite"
+    visit "/pets/#{pet_2.id}"
+    click_link "Add Favorite"
+    visit ("/pet_applications/new")
+    fill_in :name, with: 'Steve'
+    fill_in :address, with: '123 Main St'
+    fill_in :city, with: 'Lakewood'
+    fill_in :state, with: 'CO'
+    fill_in :zip, with: '80214'
+    fill_in :phone_number, with: '9705675555'
+    fill_in :description, with: 'I like dogs and will take great care of it.'
+
+    find(:css, "#pet_ids_[value='#{pet_1.id}']").set(true)
+    find(:css, "#pet_ids_[value='#{pet_2.id}']").set(true)
+
+    click_button "Submit Application"
+
+    within("section.pets_with_applicatons") do
+      click_link "#{pet_1.name}"
+      expect(current_path).to eq("/pets/#{pet_1.id}")
+    end
+
+    visit "/favorites"
+
+    within("section.pets_with_applicatons") do
+      click_link "#{pet_2.name}"
+      expect(current_path).to eq("/pets/#{pet_2.id}")
+    end
+
+    visit "/favorites"
+    
+    within("section.favorite_pets") do
+      expect(page).to_not have_content(pet_1.name)
+      expect(page).to_not have_content(pet_2.name)
+    end
+  end
 end
