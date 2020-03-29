@@ -1,0 +1,39 @@
+<h2>
+  <%= form_tag '/pet_applications/' do %>
+    <section>
+      <% @favorite_pets.each do |pet| %>
+          <%= check_box_tag 'pet_ids[]', pet.id -%>
+          <%= h pet.name -%>
+      <% end %>
+    </section>
+    <%= label_tag :name %>
+    <br>
+    <%= text_field_tag :name %>
+    <br>
+    <%= label_tag :address %>
+    <br>
+    <%= text_field_tag :address %>
+    <br>
+    <%= label_tag :city %>
+    <br>
+    <%= text_field_tag :city %>
+    <br>
+    <%= label_tag :state %>
+    <br>
+    <%= text_field_tag :state %>
+    <br>
+    <%= label_tag :zip %>
+    <br>
+    <%= text_field_tag :zip %>
+    <br>
+    <%= label_tag :phone_number %>
+    <br>
+    <%= telephone_field_tag :phone_number %>
+    <br>
+    <%= label_tag :description %>
+    <br>
+    <%= text_field_tag :description %>
+    <br>
+    <%= submit_tag 'Submit Application' %>
+  <% end %>
+</h2>
