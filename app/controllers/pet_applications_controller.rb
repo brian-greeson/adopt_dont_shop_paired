@@ -1,14 +1,10 @@
 class PetApplicationsController < ApplicationController
   def new
-    @favorite_pets = []
-    Pet.find_each do |pet|
-      pet_id_string = pet.id.to_s
-      @favorite_pets << pet if favorite.contents.include?(pet_id_string)
-    end
+    @favorite_pets = favorite.pets
   end
 
   def create
-    PetApplication.create(
+    application = PetApplication.new(
       name: params[:name],
       address: params[:address],
       city: params[:city],
@@ -21,7 +17,13 @@ class PetApplicationsController < ApplicationController
 
     favorite.remove_pets(params[:pet_ids])
 
-    flash[:tah_dah] = "Your application has been received! 🏠"
-    redirect_to '/favorites'
+    if application.save
+      flash[:tah_dah] = "Your application has been received! 🏠"
+      redirect_to '/favorites'
+    else
+      @favorite_pets = favorite.pets
+      flash[:wah_wah] = "Please fill out the entire form."
+      render :new
+    end
   end
 end
