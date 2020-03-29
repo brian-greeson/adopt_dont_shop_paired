@@ -38,7 +38,8 @@ RSpec.describe PetApplication do
         approximate_age: "3",
         sex: "male"
       )
-      application_1 = PetApplication.create(
+
+      PetApplication.create(
         name: 'Steve',
         address: '123 Main St',
         city: 'Lakewood',
@@ -49,7 +50,7 @@ RSpec.describe PetApplication do
         pet_ids: [pet_1.id]
       )
 
-      application_2 = PetApplication.create(
+      PetApplication.create(
         name: 'Steve',
         address: '123 Main St',
         city: 'Lakewood',
