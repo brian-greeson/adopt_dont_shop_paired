@@ -36,4 +36,43 @@ RSpec.describe Favorite do
     expect(favorite.contents).to eq(["2","3"])
   end
 
+  it ".remove_pets" do
+    favorite = Favorite.new(["1","2","3"])
+    favorite.remove_pets(["1","2"])
+
+    expect(favorite.contents).to eq(["3"])
+  end
+
+  it ".pets" do
+    shelter_1 = Shelter.create(
+      name: "Denver Animal Shelter",
+      address: "1241 W Bayaud Ave",
+      city: "Denver",
+      state: "CO",
+      zip: "80223")
+
+    pet_1 = shelter_1.pets.create(
+      image: "https://upload.wikimedia.org/wikipedia/commons/f/f1/Jack_Russell_Terrier_1.jpg",
+      name: "Spot",
+      description: "Jack Russell Terrier with tons of energy!",
+      approximate_age: "5",
+      sex: "male",
+      adoption_status: "adoptable"
+    )
+
+    pet_2 = shelter_1.pets.create(
+      image: "https://c8.alamy.com/comp/2A8F42Y/a-young-white-domestic-shorthair-cat-with-blue-eyes-and-a-surprised-expression-2A8F42Y.jpg",
+      name: "Sugar",
+      description: "White cat with blue eyes. Very sweet and lovable!",
+      approximate_age: "3",
+      sex: "female",
+      adoption_status: "adoptable"
+    )
+    
+    favorite = Favorite.new([])
+    favorite.add_pet(pet_1.id)
+    favorite.add_pet(pet_2.id)
+
+    expect(favorite.pets).to eq([pet_1, pet_2])
+  end
 end
