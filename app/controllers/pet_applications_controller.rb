@@ -15,10 +15,9 @@ class PetApplicationsController < ApplicationController
       pet_ids: params[:pet_ids]
     )
 
-    favorite.remove_pets(params[:pet_ids])
-
     if application.save
       flash[:tah_dah] = "Your application has been received! 🏠"
+      favorite.remove_pets(params[:pet_ids])
       redirect_to '/favorites'
     else
       @favorite_pets = favorite.pets

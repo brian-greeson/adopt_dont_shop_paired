@@ -100,7 +100,6 @@ RSpec.describe "As a visitor when I have added pets to my favorites list" do
 
     find(:css, "#pet_ids_[value='#{pet_1.id}']").set(true)
 
-
     click_button "Submit Application"
     expect(page).to have_content("Please fill out the entire form.")
     expect(page).to have_selector('input[type=submit]')

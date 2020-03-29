@@ -1,5 +1,5 @@
 class PetApplication < ApplicationRecord
-  validates_presence_of :name, :address, :city, :state, :zip, :phone_number, :description
+  validates_presence_of :name, :address, :city, :state, :zip, :phone_number, :description, :pet_ids
   has_many :application_pets
   has_many :pets, through: :application_pets
 end
