@@ -68,6 +68,7 @@ RSpec.describe "As a visitor when I have added pets to my favorites list" do
     click_button "Submit Application"
     expect(current_path).to eq("/favorites")
     expect(page).to have_content("Your application has been received! 🏠")
+
     within "section.favorite_pets" do
       expect(page).to_not have_content(pet_1.name)
     end

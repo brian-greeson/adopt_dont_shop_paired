@@ -1,6 +1,7 @@
 <h1><%= @heading %></h1>
 <%= link_to "Remove All", "/favorites", method: :delete %>
 <%= link_to "Start Application", "/pet_applications/new" %>
+
 <section class="favorite_pets">
   <% @pets.each do |pet| %>
   <article id="pet-<%= pet.id %>-details">
@@ -22,3 +23,4 @@
   </article>
   <% end %>
 </section>
+
