@@ -36,4 +36,10 @@ RSpec.describe Favorite do
     expect(favorite.contents).to eq(["2","3"])
   end
 
+  it ".remove_pets" do
+    favorite = Favorite.new(["1","2","3"])
+    favorite.remove_pets(["1","2"])
+
+    expect(favorite.contents).to eq(["3"])
+  end
 end
