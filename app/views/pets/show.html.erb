@@ -10,6 +10,7 @@
                   "/favorites/#{@pet.id}",
                   method: @favorite_link[:method]
                   %></li>
+  <li><%= link_to 'View Applications', "/pets/#{@pet.id}/applications" %>
   <li><%= link_to 'Update Pet', "/pets/#{@pet.id}/edit" %>
   <li><%= link_to 'Delete', "/pets/#{@pet.id}", method: :delete %>
 </ul>
