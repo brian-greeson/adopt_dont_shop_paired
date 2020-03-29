@@ -5,6 +5,15 @@ class Favorite
     @contents = initial_contents || Array.new
   end
 
+  def pets
+    @favorite_pets = []
+    Pet.find_each do |pet|
+      pet_id_string = pet.id.to_s
+      @favorite_pets << pet if contents.include?(pet_id_string)
+    end
+    @favorite_pets
+  end
+
   def add_pet(pet_id)
     @contents << pet_id.to_s
   end
