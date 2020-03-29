@@ -25,4 +25,8 @@ class PetApplicationsController < ApplicationController
       render :new
     end
   end
+
+  def show
+    @application = PetApplication.find(params[:application_id])
+  end
 end

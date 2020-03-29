@@ -29,13 +29,17 @@ RSpec.describe "As a visitor when I visit the application show page" do
 
     visit "/pet_applications/#{app_1.id}"
 
-    within("application-#{app_1.id}-details") do  
+    within("section.application-#{app_1.id}-details") do
       expect(page).to have_content("Name: #{app_1.name}")
       expect(page).to have_content("Address: #{app_1.address}")
       expect(page).to have_content("City: #{app_1.city}")
-      expect(page).to have_content("State: #{app_1.zip}")
+      expect(page).to have_content("State: #{app_1.state}")
+      expect(page).to have_content("Zip: #{app_1.zip}")
       expect(page).to have_content("Phone Number: #{app_1.phone_number}")
       expect(page).to have_content("Description: #{app_1.description}")
+    end
+
+    within("section.application-#{app_1.id}-pets") do
       expect(page).to have_link(pet_1.name)
     end
   end
