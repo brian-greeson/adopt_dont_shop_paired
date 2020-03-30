@@ -1,21 +1,14 @@
 class ShelterReviewsController < ApplicationController
   def new
-    @shelter = Shelter.find(params[:id])
+    @shelter = Shelter.find(params[:shelter_id])
   end
 
   def create
-    shelter_review = ShelterReview.new({
-      title: shelter_review_params[:title],
-      image: shelter_review_params[:image],
-      content: shelter_review_params[:content],
-      rating: shelter_review_params[:rating],
-      shelter_id: params[:id]
-      })
-
+    shelter_review = ShelterReview.new(shelter_review_params)
     if shelter_review.save
-      redirect_to "/shelters/#{params[:id]}"
+      redirect_to "/shelters/#{params[:shelter_id]}"
     else
-      @shelter = Shelter.find(params[:id])
+      @shelter = Shelter.find(params[:shelter_id])
       flash.now[:ding_dong] = "Please include a title and content for your review."
       render :new
     end
@@ -27,12 +20,7 @@ class ShelterReviewsController < ApplicationController
 
   def update
     @shelter_review = ShelterReview.find(params[:review_id])
-    if @shelter_review.update({
-        title: shelter_review_params[:title],
-        content: shelter_review_params[:content],
-        image: shelter_review_params[:image],
-        rating: shelter_review_params[:rating],
-      })
+    if @shelter_review.update(shelter_review_params)
       redirect_to "/shelters/#{@shelter_review.shelter_id}"
     else
       @shelter_review = ShelterReview.find(params[:review_id])
@@ -48,6 +36,6 @@ class ShelterReviewsController < ApplicationController
 
   private
   def shelter_review_params
-    params.permit(:title, :rating, :content, :image)
+    params.permit(:title, :rating, :content, :image, :shelter_id)
   end
 end

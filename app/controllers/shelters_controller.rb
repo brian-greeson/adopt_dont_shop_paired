@@ -7,11 +7,11 @@ class SheltersController < ApplicationController
   end
 
   def show
-    @shelter = Shelter.find(params[:id])
+    @shelter = Shelter.find(params[:shelter_id])
   end
 
   def pet_index
-    @shelter = Shelter.find(params[:id])
+    @shelter = Shelter.find(params[:shelter_id])
   end
 
   def create
@@ -20,17 +20,17 @@ class SheltersController < ApplicationController
   end
 
   def edit
-    @shelter = Shelter.find(params[:id])
+    @shelter = Shelter.find(params[:shelter_id])
   end
 
   def update
-    shelter = Shelter.find(params[:id])
+    shelter = Shelter.find(params[:shelter_id])
     shelter.update(shelter_params)
     redirect_to "/shelters/#{shelter.id}"
   end
 
   def destroy
-    Shelter.destroy(params[:id])
+    Shelter.destroy(params[:shelter_id])
     redirect_to '/shelters'
   end
 
