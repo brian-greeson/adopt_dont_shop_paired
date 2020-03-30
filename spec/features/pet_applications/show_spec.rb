@@ -56,7 +56,16 @@ RSpec.describe "As a visitor when I visit the application show page" do
       image: "https://upload.wikimedia.org/wikipedia/commons/f/f1/Jack_Russell_Terrier_1.jpg",
       name: "Spot",
       approximate_age: "5",
-      sex: "male"
+      sex: "male",
+      description: "abc"
+    )
+
+    pet_2 = shelter_1.pets.create(
+      image: "https://upload.wikimedia.org/wikipedia/commons/f/f1/Jack_Russell_Terrier_2.jpg",
+      name: "Tops",
+      approximate_age: "52",
+      sex: "female",
+      description: "abc"
     )
 
     app_1 = PetApplication.create(
@@ -67,7 +76,7 @@ RSpec.describe "As a visitor when I visit the application show page" do
       zip: '80214',
       phone_number: '9705675555',
       description: 'I like dogs and will take great care of it.',
-      pet_ids: [pet_1.id]
+      pet_ids: [pet_1.id, pet_2.id]
     )
 
     visit "/pet_applications/#{app_1.id}"
@@ -77,6 +86,16 @@ RSpec.describe "As a visitor when I visit the application show page" do
     end
 
     expect(current_path).to eq("/pets/#{pet_1.id}")
+    expect(page).to have_content("pending")
+    expect(page).to have_content("On hold for #{app_1.name}")
+
+    visit "/pet_applications/#{app_1.id}"
+
+    within "section.application-#{app_1.id}-pets" do
+      find("#approve-#{pet_2.id}").click
+    end
+
+    expect(current_path).to eq("/pets/#{pet_2.id}")
     expect(page).to have_content("pending")
     expect(page).to have_content("On hold for #{app_1.name}")
   end
