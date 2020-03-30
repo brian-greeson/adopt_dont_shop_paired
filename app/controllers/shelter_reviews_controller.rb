@@ -43,7 +43,7 @@ class ShelterReviewsController < ApplicationController
 
   def destroy
     review = ShelterReview.destroy(params[:review_id])
-    redirect_to shelters_show_path(review.shelter.id)
+    redirect_to "/shelters/#{review.shelter.id}"
   end
 
   private
