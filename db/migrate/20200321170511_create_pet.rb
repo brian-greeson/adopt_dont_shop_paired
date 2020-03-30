@@ -6,7 +6,7 @@ class CreatePet < ActiveRecord::Migration[5.1]
       t.string :approximate_age
       t.string :sex
       t.string :description
-      t.string :adoption_status, default: "adoptable"
+      t.string :adoption_status
 
       t.timestamps
     end
