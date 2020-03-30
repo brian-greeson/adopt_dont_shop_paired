@@ -32,7 +32,7 @@ class SheltersController < ApplicationController
       state: shelter_params[:state],
       zip: shelter_params[:zip],
       })
-      
+
     redirect_to "/shelters/#{shelter.id}"
   end
 
