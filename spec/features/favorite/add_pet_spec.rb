@@ -25,7 +25,7 @@ RSpec.describe "A user I visit " do
       click_link("Favorites: 0")
       expect(current_path).to eq("/favorites")
   end
-  
+
   it "Pets show page I can click a link to favorite that pet" do
     shelter_1 = Shelter.create(name: "Denver Animal Shelter", address: "1241 W Bayaud Ave", city: "Denver", state: "CO", zip: "80223")
 
@@ -35,10 +35,10 @@ RSpec.describe "A user I visit " do
       approximate_age: "5",
       sex: "male")
 
-      visit pets_show_path(pet_1)
+      visit "/pets/#{pet_1.id}"
       click_link "Add Favorite"
 
-      expect(current_path).to eq(pets_show_path(pet_1))
+      expect(current_path).to eq("/pets/#{pet_1.id}")
       within(".flash-message") do
         expect(page).to have_content("#{pet_1.name} has been added to your favorites list ❤️")
       end
