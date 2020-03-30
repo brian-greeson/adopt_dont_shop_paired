@@ -31,6 +31,10 @@ class PetApplicationsController < ApplicationController
   end
 
   def index
+    @heading = "Applicants:"
     @applications = PetApplication.for_pet(params[:pet_id])
+    if @applications.empty?
+      @heading = "There are no applications for this pet."
+    end
   end
 end

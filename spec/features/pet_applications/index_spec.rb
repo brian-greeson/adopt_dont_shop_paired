@@ -48,4 +48,23 @@ RSpec.describe "As a visitor" do
     click_link "#{app_1.name}"
     expect(current_path).to eq("/pet_applications/#{app_1.id}")
   end
+
+  it "I see a message on the application page indicating there are no applications if so" do
+    shelter_1 = Shelter.create(
+      name: "Denver Animal Shelter",
+      address: "1241 W Bayaud Ave",
+      city: "Denver",
+      state: "CO", zip: "80223"
+    )
+
+    pet_1 = shelter_1.pets.create(
+      image: "https://upload.wikimedia.org/wikipedia/commons/f/f1/Jack_Russell_Terrier_1.jpg",
+      name: "Spot",
+      approximate_age: "5",
+      sex: "male"
+    )
+
+    visit "/pets/#{pet_1.id}/applications"
+    expect(page).to have_content("There are no applications for this pet.")
+  end
 end
