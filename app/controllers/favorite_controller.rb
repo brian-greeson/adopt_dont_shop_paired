@@ -9,15 +9,10 @@ class FavoriteController < ApplicationController
 
   def index
     @heading = "You have no favorite pets 💔"
-    @pets = []
+    @pets = favorite.pets
     if !favorite.contents.empty?
       @heading = "My Favorites ❤️"
-      Pet.find_each do |pet|
-        pet_id_string = pet.id.to_s
-        @pets << pet if favorite.contents.include?(pet_id_string)
-      end
     end
-
     @pets_with_applications = PetApplication.pets
   end
 
