@@ -37,4 +37,14 @@ class PetApplicationsController < ApplicationController
       @heading = "There are no applications for this pet."
     end
   end
+
+  def approve
+    pet = Pet.find(params[:pet_id])
+    application = PetApplication.find(params[:application_id])
+    pet.update(
+      adoption_status: "pending",
+      applicant: application.name
+    )
+    redirect_to "/pets/#{params[:pet_id]}"
+  end
 end
