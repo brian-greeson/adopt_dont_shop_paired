@@ -10,11 +10,11 @@ RSpec.describe PetApplication do
     it {should validate_presence_of :phone_number}
     it {should validate_presence_of :description}
     it {should validate_presence_of :pet_ids}
-    end
+  end
 
-    describe "relationships" do
+  describe "relationships" do
     it {should have_many(:pets).through(:application_pets)}
-    end
+  end
 
   describe "class methods" do
     it ".pets" do
@@ -110,7 +110,10 @@ RSpec.describe PetApplication do
 
       expect(PetApplication.for_pet(pet_1.id)).to eq([app_1, app_2])
       expect(PetApplication.for_pet(pet_2.id)).to eq([app_2])
-
     end
+  end
+
+  describe "instance methods" do
+
   end
 end

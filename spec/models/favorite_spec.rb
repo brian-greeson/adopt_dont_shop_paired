@@ -56,8 +56,7 @@ RSpec.describe Favorite do
       name: "Spot",
       description: "Jack Russell Terrier with tons of energy!",
       approximate_age: "5",
-      sex: "male",
-      adoption_status: "adoptable"
+      sex: "male"
     )
 
     pet_2 = shelter_1.pets.create(
@@ -65,10 +64,9 @@ RSpec.describe Favorite do
       name: "Sugar",
       description: "White cat with blue eyes. Very sweet and lovable!",
       approximate_age: "3",
-      sex: "female",
-      adoption_status: "adoptable"
+      sex: "female"
     )
-    
+
     favorite = Favorite.new([])
     favorite.add_pet(pet_1.id)
     favorite.add_pet(pet_2.id)
