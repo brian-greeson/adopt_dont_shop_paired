@@ -9,8 +9,7 @@ RSpec.describe "pet page", type: :feature do
       name: "Spot",
       description: "Jack Russell Terrier with tons of energy!",
       approximate_age: "5",
-      sex: "male",
-      adoption_status: "adoptable"
+      sex: "male"
     )
 
     pet_2 = shelter_1.pets.create(
@@ -18,8 +17,7 @@ RSpec.describe "pet page", type: :feature do
       name: "Sugar",
       description: "White cat with blue eyes. Very sweet and lovable!",
       approximate_age: "3",
-      sex: "female",
-      adoption_status: "adoptable"
+      sex: "female"
     )
 
     visit "/pets/#{pet_1.id}"

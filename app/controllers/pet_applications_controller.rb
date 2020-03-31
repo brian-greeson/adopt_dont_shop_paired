@@ -4,16 +4,7 @@ class PetApplicationsController < ApplicationController
   end
 
   def create
-    application = PetApplication.new(
-      name: params[:name],
-      address: params[:address],
-      city: params[:city],
-      state: params[:state],
-      zip: params[:zip],
-      phone_number: params[:phone_number],
-      description: params[:description],
-      pet_ids: params[:pet_ids]
-    )
+    application = PetApplication.new(pet_applications_params)
 
     if application.save
       flash[:tah_dah] = "Your application has been received! 🏠"
@@ -38,13 +29,9 @@ class PetApplicationsController < ApplicationController
     end
   end
 
-  def approve
-    pet = Pet.find(params[:pet_id])
-    application = PetApplication.find(params[:application_id])
-    pet.update(
-      adoption_status: "pending",
-      applicant: application.name
-    )
-    redirect_to "/pets/#{params[:pet_id]}"
+  private
+
+  def pet_applications_params
+    params.permit(:name, :address, :city, :state, :zip, :phone_number, :description, :pet_ids => [])
   end
 end

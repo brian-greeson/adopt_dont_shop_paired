@@ -79,6 +79,17 @@ RSpec.describe "As a visitor when I visit the application show page" do
       pet_ids: [pet_1.id, pet_2.id]
     )
 
+    app_2 = PetApplication.create(
+      name: 'Brian',
+      address: '1ew2e Main St',
+      city: 'Laksdfood',
+      state: 'Cds',
+      zip: '802314',
+      phone_number: '9702375555',
+      description: 'I hate dogs and will take great care of it.',
+      pet_ids: [pet_1.id, pet_2.id]
+    )
+
     visit "/pet_applications/#{app_1.id}"
 
     within "section.application-#{app_1.id}-pets" do
