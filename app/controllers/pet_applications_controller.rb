@@ -29,12 +29,6 @@ class PetApplicationsController < ApplicationController
     end
   end
 
-  def approve
-    pet = Pet.find(params[:pet_id])
-    application = PetApplication.find(params[:application_id])
-    redirect_to "/pets/#{params[:pet_id]}"
-  end
-
   private
 
   def pet_applications_params
