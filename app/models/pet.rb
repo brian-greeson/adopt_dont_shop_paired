@@ -11,4 +11,8 @@ class Pet < ApplicationRecord
       "adoptable"
     end
   end
+
+  def approved_application
+    self.application_pets.where(status: "approved").first.pet_application
+  end
 end

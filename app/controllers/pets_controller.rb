@@ -10,6 +10,7 @@ class PetsController < ApplicationController
   def show
     @pet = Pet.find(params[:pet_id])
     @favorite_link = favorite.link_text_and_method(@pet.id)
+    
   end
 
   def create
