@@ -39,7 +39,7 @@ describe Shelter, type: :model do
         pet_ids: [pet_1.id]
       )
 
-      # expect(shelter_1.has_pending_pet?).to eq(false)
+      expect(shelter_1.has_pending_pet?).to eq(false)
 
       app_to_pet_1 = ApplicationPet.find_by(pet_id: pet_1.id)
       app_to_pet_1.approve

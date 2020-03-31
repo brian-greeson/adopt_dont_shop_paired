@@ -4,8 +4,6 @@ class Shelter < ApplicationRecord
   has_many :shelter_reviews, dependent: :destroy
 
   def has_pending_pet?
-    binding.pry
-    pets.include?(approved_application)
-
+    pets.joins(:application_pets).where('application_pets.status = ?', "approved").exists?
   end
 end
