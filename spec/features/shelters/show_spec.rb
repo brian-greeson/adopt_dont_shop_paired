@@ -13,9 +13,24 @@ RSpec.describe "shelter page", type: :feature do
     expect(page).to have_content("Zip: #{shelter_1.zip}")
   end
 
-  it 'I can delete a shelter' do
+  it 'I can delete a shelter and all its pets go with it' do
     shelter_1 = Shelter.create(name: "Denver Animal Shelter", address: "1241 W Bayaud Ave", city: "Denver", state: "CO", zip: "80223")
     shelter_2 = Shelter.create(name: "Aurora Animal Shelter", address: "15750 E 32nd Ave", city: "Aurora", state: "CO", zip: "80011")
+
+    pet_1 = shelter_1.pets.create(
+      image: "https://upload.wikimedia.org/wikipedia/commons/f/f1/Jack_Russell_Terrier_1.jpg",
+      name: "Spot",
+      approximate_age: "5",
+      description: "A dog",
+      sex: "male"
+    )
+    pet_2 = shelter_2.pets.create(
+      image: "https://upload.wikimedia.org/wikipedia/commons/f/f1/Jack_Russell_Terrier_1.jpg",
+      name: "Spike",
+      approximate_age: "5",
+      description: "A dog",
+      sex: "male"
+    )
 
     visit "/shelters/#{shelter_1.id}"
 
@@ -24,6 +39,10 @@ RSpec.describe "shelter page", type: :feature do
     expect(current_path).to eq('/shelters')
     expect(page).to_not have_content(shelter_1.name)
     expect(page).to have_content(shelter_2.name)
+
+    visit "/pets"
+    expect(page).to_not have_content(pet_1.name)
+    expect(page).to have_content(pet_2.name)
   end
 
   it "I cannot delete a shelter that has approved applications" do
@@ -67,7 +86,7 @@ RSpec.describe "shelter page", type: :feature do
     app_to_pet_1.approve
 
     visit "/shelters/#{shelter_1.id}"
-    
+
     expect(page).to_not have_link("Delete")
   end
 
