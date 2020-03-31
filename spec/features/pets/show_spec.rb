@@ -27,7 +27,8 @@ RSpec.describe "pet page", type: :feature do
     expect(page).to have_content(pet_1.description)
     expect(page).to have_content(pet_1.approximate_age)
     expect(page).to have_content(pet_1.sex)
-  
+    expect(page).to have_content(pet_1.adoption_status)
+
     expect(page).to_not have_css("img[src*= '#{pet_2.image}']")
     expect(page).to_not have_content(pet_2.name)
     expect(page).to_not have_content(pet_2.description)
