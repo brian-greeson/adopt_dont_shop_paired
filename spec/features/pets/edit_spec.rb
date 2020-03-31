@@ -5,13 +5,20 @@ RSpec.describe "New Shelter" do
     describe 'When I visit the pet show page' do
       describe 'I can click Update Pet' do
         it "to update a pet" do
-          shelter_1 = Shelter.create(name: "Denver Animal Shelter", address: "1241 W Bayaud Ave", city: "Denver", state: "CO", zip: "80223")
+          shelter_1 = Shelter.create(
+            name: "Denver Animal Shelter",
+            address: "1241 W Bayaud Ave",
+            city: "Denver",
+            state: "CO",
+            zip: "80223"
+          )
           pet_1 = shelter_1.pets.create(
             image: "https://upload.wikimedia.org/wikipedia/commons/f/f1/Jack_Russell_Terrier_1.jpg",
             name: "Spot",
             description: "Jack Russell Terrier with tons of energy!",
             approximate_age: "5",
-            sex: "male")
+            sex: "male"
+          )
 
           visit "/pets/#{pet_1.id}"
 

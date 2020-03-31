@@ -27,7 +27,13 @@ RSpec.describe "A user I visit " do
   end
 
   it "Pets show page I can click a link to favorite that pet" do
-    shelter_1 = Shelter.create(name: "Denver Animal Shelter", address: "1241 W Bayaud Ave", city: "Denver", state: "CO", zip: "80223")
+    shelter_1 = Shelter.create(
+      name: "Denver Animal Shelter",
+      address: "1241 W Bayaud Ave",
+      city: "Denver",
+      state: "CO",
+      zip: "80223"
+    )
 
     pet_1 = shelter_1.pets.create(
       image: "https://upload.wikimedia.org/wikipedia/commons/f/f1/Jack_Russell_Terrier_1.jpg",

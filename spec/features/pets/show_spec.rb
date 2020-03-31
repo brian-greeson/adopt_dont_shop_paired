@@ -9,8 +9,7 @@ RSpec.describe "pet page", type: :feature do
       name: "Spot",
       description: "Jack Russell Terrier with tons of energy!",
       approximate_age: "5",
-      sex: "male",
-      adoption_status: "adoptable"
+      sex: "male"
     )
 
     pet_2 = shelter_1.pets.create(
@@ -18,8 +17,7 @@ RSpec.describe "pet page", type: :feature do
       name: "Sugar",
       description: "White cat with blue eyes. Very sweet and lovable!",
       approximate_age: "3",
-      sex: "female",
-      adoption_status: "adoptable"
+      sex: "female"
     )
 
     visit "/pets/#{pet_1.id}"
@@ -29,8 +27,7 @@ RSpec.describe "pet page", type: :feature do
     expect(page).to have_content(pet_1.description)
     expect(page).to have_content(pet_1.approximate_age)
     expect(page).to have_content(pet_1.sex)
-    expect(page).to have_content(pet_1.adoption_status)
-
+  
     expect(page).to_not have_css("img[src*= '#{pet_2.image}']")
     expect(page).to_not have_content(pet_2.name)
     expect(page).to_not have_content(pet_2.description)
