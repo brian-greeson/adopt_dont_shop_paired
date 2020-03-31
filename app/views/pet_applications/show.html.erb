@@ -13,6 +13,8 @@
     <%= link_to "#{pet.name}", "/pets/#{pet.id}"%>
     <% if pet.adoption_status == "adoptable" %>
       <%= link_to "Approve", "/pet_applications/#{@application.id}/#{pet.id}", id: "approve-#{pet.id}", method: :patch %>
+    <% elsif pet.approved_application.id == @application.id %>  
+      <%= link_to "Revoke", "/pet_applications/#{@application.id}/#{pet.id}", id: "revoke-#{pet.id}", method: :patch %>
     <% end %>
   <% end %>
 </section>

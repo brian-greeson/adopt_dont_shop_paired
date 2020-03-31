@@ -6,4 +6,8 @@ class ApplicationPet < ApplicationRecord
     update(status: "approved")
   end
 
+  def revoke
+    update(status: "open")
+  end
+
 end
