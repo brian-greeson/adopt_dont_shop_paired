@@ -5,8 +5,8 @@
 <p>Approximate Age: <%= @pet.approximate_age %></p>
 <p>Sex: <%= @pet.sex %></p>
 <p>Adoption Status: <%= @pet.adoption_status %></p>
-<% if @pet.applicant %>
-  <p>Applicant: On hold for <%= @pet.applicant %></p>
+<% if @pet.adoption_status == "pending" %>
+  <p>Applicant: On hold for <%= @pet.application_pets.where(status: "approved").first.pet_application.name %></p>
 <% end %>
 <ul>
   <li><%= link_to @favorite_link[:favorite_link_text],
