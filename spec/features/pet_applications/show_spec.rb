@@ -202,6 +202,14 @@ RSpec.describe "As a visitor when I visit the application show page" do
 
     app_to_pet_1 = ApplicationPet.find_by(pet_id: pet_1.id)
     app_to_pet_1.approve
+
+    visit "/pet_applications/#{app_2.id}"
+
+    within "section.application-#{app_2.id}-pets" do
+      expect(page).to_not have_css("#approve-#{pet_1.id}")
+      expect(page).to_not have_css("#revoke-#{pet_1.id}")
+    end
+
     visit "/pet_applications/#{app_1.id}"
 
     within "section.application-#{app_1.id}-pets" do
