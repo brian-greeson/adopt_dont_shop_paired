@@ -18,7 +18,6 @@ class PetApplicationsController < ApplicationController
   end
 
   def show
-    @application_status =
     @application = PetApplication.find(params[:application_id])
   end
 
