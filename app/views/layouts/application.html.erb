@@ -6,23 +6,28 @@
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
+  <section class="flash-message">
   <% flash.each do |type, message| %>
     <% if type == "incomplete_form" %>
-      <ul class="missing-fields"> Please fill in:
+      <p>Please fill in:</p>
+      <ul class="missing-fields">
         <% message.each do |field| %>
          <li><%= field.to_s.capitalize %></li>
         <% end %>
       </ul>
     <% else %>
-      <p class="flash-message"><%= message %></p>
+      <p><%= message %></p>
     <% end %>
   <% end %>
+  </section>
   <body>
+  <section class="nav">
     <ul>
       <li><%= link_to "All Pets", "/pets"%></li>
       <li><%= link_to "All Shelters", "/shelters"%></li>
       <li><%= link_to "Favorites: #{favorite.total_count}", "/favorites"%></li>
     </ul>
+  </section>
 
     <%= yield %>
 
