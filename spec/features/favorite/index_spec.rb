@@ -139,7 +139,7 @@ RSpec.describe "As a vistor When I have added a pet to my favorite list" do
     expect(page).to_not have_content("You have no favorite pets 💔")
   end
 
-  it "I can visit the favorite index page and see text stating that I have no favorite pets" do
+  it "I can visit the favorite index page and click a link to remove all pets from my favorites" do
     shelter_1 = Shelter.create(
       name: "Denver Animal Shelter",
       address: "1241 W Bayaud Ave",
@@ -224,7 +224,7 @@ RSpec.describe "As a vistor When I have added a pet to my favorite list" do
     end
 
     visit "/favorites"
-    
+
     within("section.favorite_pets") do
       expect(page).to_not have_content(pet_1.name)
       expect(page).to_not have_content(pet_2.name)
