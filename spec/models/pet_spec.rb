@@ -33,7 +33,7 @@ describe Pet, type: :model do
         approximate_age: "3",
         sex: "male"
       )
-      app_1 = PetApplication.create(
+      PetApplication.create(
         name: 'Steve',
         address: '123 Main St',
         city: 'Lakewood',
@@ -62,9 +62,6 @@ describe Pet, type: :model do
 
       expect(pet_1.adoption_status).to eq("pending")
       expect(pet_2.adoption_status).to eq("adoptable")
-
-      
-
     end
   end
 

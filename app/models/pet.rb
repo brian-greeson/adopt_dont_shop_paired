@@ -13,6 +13,7 @@ class Pet < ApplicationRecord
   end
 
   def approved_application
+    return false if application_pets.where(status: "approved").empty?
     self.application_pets.where(status: "approved").first.pet_application
   end
 end
