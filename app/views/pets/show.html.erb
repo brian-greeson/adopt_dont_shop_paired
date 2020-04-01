@@ -1,6 +1,6 @@
 <h1><%=@pet.name %></h1>
 <img><%= image_tag(@pet.image, width: "350") %></img>
-<h2>Name: <%= @pet.name %></h2>
+<h2>Name: <%= link_to "#{@pet.name}", "/pets/#{@pet.id}"%></h2>
 <p>Description: <%= @pet.description %></p>
 <p>Approximate Age: <%= @pet.approximate_age %></p>
 <p>Sex: <%= @pet.sex %></p>
