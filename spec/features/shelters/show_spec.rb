@@ -90,6 +90,32 @@ RSpec.describe "shelter page", type: :feature do
     expect(page).to_not have_link("Delete")
   end
 
+  it "there is the count of the number of pets at shelter" do
+    shelter_1 = Shelter.create(
+      name: "Denver Animal Shelter",
+      address: "1241 W Bayaud Ave",
+      city: "Denver",
+      state: "CO", zip: "80223"
+    )
+
+    pet_1 = shelter_1.pets.create(
+      image: "https://upload.wikimedia.org/wikipedia/commons/f/f1/Jack_Russell_Terrier_1.jpg",
+      name: "Spot",
+      approximate_age: "5",
+      sex: "male"
+    )
+    pet_2 = shelter_1.pets.create(
+      image: "https://upload.wikimedia.org/wikipedia/commons/f/f1/Jack_Russell_Terrier_1.jpg",
+      name: "S24rt",
+      approximate_age: "5",
+      sex: "male"
+    )
+
+    visit "/shelters/#{shelter_1.id}"
+
+    expect(page).to have_content("Total Pets: 2")
+  end
+
   it "there is a navigation link to shelter index and pet index" do
     shelter_1 = Shelter.create(name: "Denver Animal Shelter", address: "1241 W Bayaud Ave", city: "Denver", state: "CO", zip: "80223")
     visit "/shelters/#{shelter_1.id}"
@@ -100,5 +126,4 @@ RSpec.describe "shelter page", type: :feature do
     click_on "All Pets"
     expect(page).to have_current_path "/pets"
   end
-
 end
