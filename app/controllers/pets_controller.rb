@@ -10,7 +10,7 @@ class PetsController < ApplicationController
   def show
     @pet = Pet.find(params[:pet_id])
     @favorite_link = favorite.link_text_and_method(@pet.id)
-    
+
   end
 
   def create
@@ -30,6 +30,7 @@ class PetsController < ApplicationController
 
   def destroy
     Pet.destroy(params[:pet_id])
+    favorite.remove_pet(params[:pet_id])
     redirect_to '/pets'
   end
 
