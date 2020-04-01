@@ -11,7 +11,7 @@
     <% if type == "incomplete_form" %>
       <ul class="missing-fields"> Please fill in:
         <% message.each do |field| %>
-         <<li><%= field.to_s.capitalize %></li>
+         <li><%= field.to_s.capitalize %></li>
         <% end %>
       </ul>
     <% else %>
