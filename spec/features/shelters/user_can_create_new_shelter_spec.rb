@@ -35,7 +35,7 @@ RSpec.describe 'As a visitor' do
       fill_in 'Zip', with: '80223'
 
       click_on 'Create Shelter'
-      
+
       within "ul.missing-fields" do
         expect(page).to have_content("Name")
         expect(page).to have_content("City")
