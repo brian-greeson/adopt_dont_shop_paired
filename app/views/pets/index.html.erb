@@ -5,7 +5,11 @@
     <p>Approximate Age: <%= pet.approximate_age %></p>
     <p>Sex: <%= pet.sex %></p>
     <p>Shelter: <%= link_to "#{pet.shelter.name}", "/shelters/#{pet.shelter.id}"%>
-    <ul><li><%= link_to 'Update Pet', "/pets/#{pet.id}/edit" %>
-    <li><%= link_to 'Delete', "/pets/#{pet.id}", method: :delete %></ul>
+    <section class="nav">
+      <ul>
+        <li><%= link_to 'Update Pet', "/pets/#{pet.id}/edit" %>
+        <li><%= link_to 'Delete', "/pets/#{pet.id}", method: :delete %>
+      </ul>
+    </section>
     <br>
   <% end %>
