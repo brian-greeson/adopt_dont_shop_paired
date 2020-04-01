@@ -1,6 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe "shelter page", type: :feature do
+  it "Can click on shelter name to reload shelter show page" do
+    shelter_1 = Shelter.create(name: "Denver Animal Shelter", address: "1241 W Bayaud Ave", city: "Denver", state: "CO", zip: "80223")
+
+    visit "/shelters/#{shelter_1.id}"
+    click_link "#{shelter_1.name}"
+
+    expect(current_path).to eq("/shelters/#{shelter_1.id}")
+  end
+
   it "can show individual shelters with their details" do
     shelter_1 = Shelter.create(name: "Denver Animal Shelter", address: "1241 W Bayaud Ave", city: "Denver", state: "CO", zip: "80223")
 
