@@ -16,7 +16,6 @@ class SheltersController < ApplicationController
 
   def create
     shelter = Shelter.new(shelter_params)
-
     if shelter.save
       redirect_to '/shelters'
     else
@@ -30,9 +29,13 @@ class SheltersController < ApplicationController
   end
 
   def update
-    shelter = Shelter.find(params[:shelter_id])
-    shelter.update(shelter_params)
-    redirect_to "/shelters/#{shelter.id}"
+    @shelter = Shelter.find(params[:shelter_id])
+    if @shelter.update(shelter_params)
+      redirect_to "/shelters/#{@shelter.id}"
+    else
+      flash.now[:incomplete_form] = @shelter.errors.messages.keys
+      render :new
+    end
   end
 
   def destroy
