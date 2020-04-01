@@ -53,6 +53,7 @@ h3 {
 
 h4 {
   font-size: 1.125rem;
+  margin-left: 50px;
 }
 
 h5 {
@@ -61,6 +62,14 @@ h5 {
 
 h6 {
   font-size: 0.875rem;
+}
+
+hr.thick {
+  border: 10px solid #333;
+}
+
+hr.thin {
+  border: 3px solid #333;
 }
 
 

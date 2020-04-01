@@ -7,13 +7,14 @@
 <p>Average Rating: <%= @shelter.average_rating.round(1) %></p>
 <p>Applications on File: <%= @shelter.application_count %></p>
 
+<hr class="thick">
 <section class = "shelter_reviews">
-<h2>Reviews</h2>
+<h2>Reviews:</h2>
 <% @shelter.shelter_reviews.each do |review| %>
   <article id="review-<%= review.id %>-details">
-    <h3><%= review.title %></h3>
-    <p><%= review.rating %></p>
-    <p><%= review.content %></p>
+    <h4><%= review.title %></h4>
+    <p>Rating: <%= review.rating %></p>
+    <p>Comments: <%= review.content %></p>
     <%= image_tag(review.image, width: "200") %>
     <ul>
       <li><%= link_to 'Edit Review', "/reviews/#{review.id}/edit" %>
