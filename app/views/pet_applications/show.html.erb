@@ -1,5 +1,5 @@
 <section class="application-<%= @application.id %>-details">
-  <h1>Name: <%=@application.name %></h1>
+  <h1>Name: <%= link_to "#{@application.name}", "/pet_applications/#{@application.id}"  %></h1>
   <p>Address: <%= @application.address %></p>
   <p>City: <%= @application.city %></p>
   <p>State: <%= @application.state %></p>
@@ -13,7 +13,7 @@
     <%= link_to "#{pet.name}", "/pets/#{pet.id}"%>
     <% if pet.adoption_status == "adoptable" %>
       <%= link_to "Approve", "/pet_applications/#{@application.id}/#{pet.id}", id: "approve-#{pet.id}", method: :patch %>
-    <% elsif pet.approved_application.id == @application.id %>  
+    <% elsif pet.approved_application.id == @application.id %>
       <%= link_to "Revoke", "/pet_applications/#{@application.id}/#{pet.id}", id: "revoke-#{pet.id}", method: :patch %>
     <% end %>
   <% end %>

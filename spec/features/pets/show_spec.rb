@@ -1,6 +1,26 @@
 require 'rails_helper'
 
 RSpec.describe "pet page", type: :feature do
+  it "Can click pet name to reload pet show page" do
+    shelter_1 = Shelter.create(
+      name: "Denver Animal Shelter",
+      address: "1241 W Bayaud Ave",
+      city: "Denver",
+      state: "CO",
+      zip: "80223"
+    )
+    pet_1 = shelter_1.pets.create(
+      image: "https://upload.wikimedia.org/wikipedia/commons/f/f1/Jack_Russell_Terrier_1.jpg",
+      name: "Spot",
+      description: "Jack Russell Terrier with tons of energy!",
+      approximate_age: "5",
+      sex: "male"
+    )
+    visit "/pets/#{pet_1.id}"
+    click_link "#{pet_1.name}"
+
+    expect(current_path).to eq("/pets/#{pet_1.id}")
+  end
   it "can show individual pets with their details" do
     shelter_1 = Shelter.create(name: "Denver Animal Shelter", address: "1241 W Bayaud Ave", city: "Denver", state: "CO", zip: "80223")
 
