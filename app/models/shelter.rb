@@ -6,4 +6,17 @@ class Shelter < ApplicationRecord
   def has_pending_pet?
     pets.joins(:application_pets).where('application_pets.status = ?', "approved").exists?
   end
+
+  def pet_count
+    pets.count
+  end
+
+  def average_rating
+    return 0.0 if shelter_reviews.empty?
+    shelter_reviews.average(:rating)
+  end
+
+  def application_count
+    Pet.joins(:application_pets).where('shelter_id = ?', self.id ).count
+  end
 end
