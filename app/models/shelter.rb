@@ -15,4 +15,8 @@ class Shelter < ApplicationRecord
     return 0.0 if shelter_reviews.empty?
     shelter_reviews.average(:rating)
   end
+
+  def application_count
+    Pet.joins(:application_pets).where('shelter_id = ?', self.id ).count
+  end
 end
