@@ -1,8 +1,12 @@
+<section class="nav">
+  <ul>
+    <li><%= link_to "Remove All", "/favorites", method: :delete %>
+    <li><%= link_to "Start Application", "/pet_applications/new" %>
+  </ul>
+</section>
 <h1><%= @heading %></h1>
-<%= link_to "Remove All", "/favorites", method: :delete %>
-<%= link_to "Start Application", "/pet_applications/new" %>
 
-<section class="favorite_pets">
+<section class="favorite_pets nav">
   <% @pets.each do |pet| %>
   <article id="pet-<%= pet.id %>-details">
     <img><%= image_tag(pet.image, width: "200") %></img>
@@ -14,13 +18,11 @@
   </article>
   <% end %>
 </section>
-
+<h2>Pets with Applications:</h2>
 <section class="pets_with_applicatons">
   <% @pets_with_applications.each do |pet| %>
   <article id="pet-<%= pet.id %>-details">
-    <h2>Name: <%= link_to "#{pet.name}", "/pets/#{pet.id}"%></h2>
-    <br>
+    <h3><%= link_to "#{pet.name}", "/pets/#{pet.id}"%></h3>
   </article>
   <% end %>
 </section>
-

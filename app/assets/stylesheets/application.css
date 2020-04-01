@@ -53,6 +53,7 @@ h3 {
 
 h4 {
   font-size: 1.125rem;
+  margin-left: 50px;
 }
 
 h5 {
@@ -63,6 +64,14 @@ h6 {
   font-size: 0.875rem;
 }
 
+hr.thick {
+  border: 10px solid #333;
+}
+
+hr.thin {
+  border: 3px solid #333;
+}
+
 
 p {
   font-size: 1.125rem;
@@ -71,7 +80,8 @@ p {
   margin-left: 50px;
 }
 
-ul {
+
+section.nav ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -79,12 +89,12 @@ ul {
   background-color: #333;
 }
 
-li {
+section.nav li {
   float: left;
   color: white;
 }
 
-li a {
+section.nav li a {
   display: block;
   color: white;
   text-align: center;
@@ -93,7 +103,7 @@ li a {
 }
 
 /* Change the link color to #111 (black) on hover */
-li a:hover {
+section.nav li a:hover {
   background-color: #111;
 }
 

@@ -8,14 +8,16 @@
 <% if @pet.adoption_status == "pending" %>
   <p>Applicant: On hold for <%= @pet.approved_application.name%></p>
 <% end %>
-<ul>
-  <li><%= link_to @favorite_link[:favorite_link_text],
-                  "/favorites/#{@pet.id}",
-                  method: @favorite_link[:method]
-                  %></li>
-  <li><%= link_to 'View Applications', "/pets/#{@pet.id}/applications" %>
-  <li><%= link_to 'Update Pet', "/pets/#{@pet.id}/edit" %>
-  <% if !@pet.approved_application %>
-    <li><%= link_to 'Delete', "/pets/#{@pet.id}", method: :delete %>
-  <% end %>
-</ul>
+<section class="nav">
+  <ul>
+    <li><%= link_to @favorite_link[:favorite_link_text],
+                    "/favorites/#{@pet.id}",
+                    method: @favorite_link[:method]
+                    %></li>
+    <li><%= link_to 'View Applications', "/pets/#{@pet.id}/applications" %>
+    <li><%= link_to 'Update Pet', "/pets/#{@pet.id}/edit" %>
+    <% if !@pet.approved_application %>
+      <li><%= link_to 'Delete', "/pets/#{@pet.id}", method: :delete %>
+    <% end %>
+  </ul>
+</section>
