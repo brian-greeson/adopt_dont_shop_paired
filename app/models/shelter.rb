@@ -6,4 +6,8 @@ class Shelter < ApplicationRecord
   def has_pending_pet?
     pets.joins(:application_pets).where('application_pets.status = ?', "approved").exists?
   end
+
+  def pet_count
+    pets.count
+  end
 end
