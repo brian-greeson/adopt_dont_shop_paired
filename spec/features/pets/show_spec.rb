@@ -37,13 +37,20 @@ RSpec.describe "pet page", type: :feature do
   end
 
   it "there is a navigation link to shelter index and pet index" do
-    shelter_1 = Shelter.create(name: "Denver Animal Shelter", address: "1241 W Bayaud Ave", city: "Denver", state: "CO", zip: "80223")
+    shelter_1 = Shelter.create(
+      name: "Denver Animal Shelter",
+      address: "1241 W Bayaud Ave",
+      city: "Denver",
+      state: "CO",
+      zip: "80223"
+    )
     pet_1 = shelter_1.pets.create(
       image: "https://upload.wikimedia.org/wikipedia/commons/f/f1/Jack_Russell_Terrier_1.jpg",
       name: "Spot",
       description: "Jack Russell Terrier with tons of energy!",
       approximate_age: "5",
-      sex: "male")
+      sex: "male"
+    )
 
     visit "/pets/#{pet_1.id}"
     click_on "All Shelters"
@@ -52,5 +59,38 @@ RSpec.describe "pet page", type: :feature do
     visit "/pets/#{pet_1.id}"
     click_on "All Pets"
     expect(page).to have_current_path "/pets"
+  end
+
+  it "If there is an approved application on a pet, I cannot deletes that pet" do
+    shelter_1 = Shelter.create(
+      name: "Denver Animal Shelter",
+      address: "1241 W Bayaud Ave",
+      city: "Denver",
+      state: "CO",
+      zip: "80223"
+    )
+    pet_1 = shelter_1.pets.create(
+      image: "https://upload.wikimedia.org/wikipedia/commons/f/f1/Jack_Russell_Terrier_1.jpg",
+      name: "Spot",
+      description: "Jack Russell Terrier with tons of energy!",
+      approximate_age: "5",
+      sex: "male"
+    )
+    app_1 = PetApplication.create(
+      name: 'Steve',
+      address: '123 Main St',
+      city: 'Lakewood',
+      state: 'CO',
+      zip: '80214',
+      phone_number: '9705675555',
+      description: 'I like dogs and will take great care of it.',
+      pet_ids: [pet_1.id]
+    )
+    app_to_pet_1 = ApplicationPet.find_by(pet_id: pet_1.id)
+    app_to_pet_1.approve
+
+    visit "/pets/#{pet_1.id}"
+
+    expect(page).to_not have_link("Delete")
   end
 end
