@@ -16,9 +16,7 @@ RSpec.describe "As a visitor When I visit the pet show page" do
       approximate_age: "5",
       sex: "male"
     )
-
     visit "/pets/#{pet_1.id}"
-
     click_on 'Update Pet'
 
     expect(page).to have_current_path "/pets/#{pet_1.id}/edit"
@@ -28,7 +26,6 @@ RSpec.describe "As a visitor When I visit the pet show page" do
     fill_in :description, with: 'A brown and white Terrier.'
     fill_in :approximate_age, with: '6'
     fill_in :sex, with: 'male'
-
     click_on 'Update Pet'
 
     expect(page).to have_current_path "/pets/#{pet_1.id}"
@@ -55,9 +52,7 @@ RSpec.describe "As a visitor When I visit the pet show page" do
       approximate_age: "5",
       sex: "male"
     )
-
     visit "/pets/#{pet_1.id}"
-
     click_on "Update Pet"
 
     expect(page).to have_current_path "/pets/#{pet_1.id}/edit"
@@ -67,7 +62,6 @@ RSpec.describe "As a visitor When I visit the pet show page" do
     fill_in :description, with: "A brown and white Terrier."
     fill_in :approximate_age, with: ""
     fill_in :sex, with: "male"
-
     click_on "Update Pet"
 
     within "ul.missing-fields" do
@@ -83,8 +77,8 @@ RSpec.describe "As a visitor When I visit the pet show page" do
       name: "Spot",
       description: "Jack Russell Terrier with tons of energy!",
       approximate_age: "5",
-      sex: "male")
-
+      sex: "male"
+    )
     visit "/pets/#{pet_1.id}/edit"
     click_on "All Shelters"
     expect(page).to have_current_path "/shelters"

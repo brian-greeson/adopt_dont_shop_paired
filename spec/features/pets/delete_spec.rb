@@ -21,7 +21,6 @@ RSpec.describe 'As a Visitor' do
       approximate_age: "3",
       sex: "female"
     )
-
     visit "/pets/#{pet_1.id}"
 
     click_link 'Delete'
@@ -51,7 +50,6 @@ RSpec.describe 'As a Visitor' do
       approximate_age: "3",
       sex: "female"
     )
-    
     visit "/pets/#{pet_1.id}"
     click_link "Add Favorite"
     visit "/pets/#{pet_2.id}"

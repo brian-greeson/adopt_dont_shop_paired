@@ -67,7 +67,7 @@ RSpec.describe ApplicationPet do
         approximate_age: "3",
         sex: "male"
       )
-      app_1 = PetApplication.create(
+      PetApplication.create(
         name: 'Steve',
         address: '123 Main St',
         city: 'Lakewood',

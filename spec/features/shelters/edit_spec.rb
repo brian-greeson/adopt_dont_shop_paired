@@ -9,9 +9,7 @@ RSpec.describe "As a visitor When I visit the shelter show page" do
       state: "CO",
       zip: "80223"
     )
-
     visit "/shelters/#{shelter_1.id}"
-
     click_link "Update Shelter"
 
     expect(page).to have_current_path "/shelters/#{shelter_1.id}/edit"
@@ -21,12 +19,12 @@ RSpec.describe "As a visitor When I visit the shelter show page" do
     fill_in "City", with: "Denver"
     fill_in "State", with: "CO"
     fill_in "Zip", with: "80223"
-
     click_on "Submit Changes"
 
     expect(page).to have_current_path "/shelters/#{shelter_1.id}"
     expect(page).to have_content ('New Denver Animal Shelter')
   end
+
   it "I am prompted to enter incomplete fields when editing" do
     shelter_1 = Shelter.create(
       name: "Denver Animal Shelter",
@@ -35,9 +33,7 @@ RSpec.describe "As a visitor When I visit the shelter show page" do
       state: "CO",
       zip: "80223"
     )
-
     visit "/shelters/#{shelter_1.id}"
-
     click_link 'Update Shelter'
 
     expect(page).to have_current_path "/shelters/#{shelter_1.id}/edit"
@@ -47,7 +43,6 @@ RSpec.describe "As a visitor When I visit the shelter show page" do
     fill_in "City", with: ""
     fill_in "State", with: "CO"
     fill_in "Zip", with: "80223"
-
     click_on "Submit Changes"
 
     within "ul.missing-fields" do
@@ -64,13 +59,14 @@ RSpec.describe "As a visitor When I visit the shelter show page" do
       state: "CO",
       zip: "80223"
     )
-
     visit "/shelters/#{shelter_1.id}/edit"
     click_on "All Shelters"
+
     expect(page).to have_current_path "/shelters"
 
     visit "/shelters/#{shelter_1.id}/edit"
     click_on "All Pets"
+    
     expect(page).to have_current_path "/pets"
   end
 end

@@ -92,9 +92,12 @@ RSpec.describe "As a vistor When I have added a pet to my favorite list" do
     )
     visit "/pets/#{pet_1.id}"
     click_link "Add Favorite"
+
     expect(page).to have_content("Favorites: 1")
+
     visit "/pets/#{pet_2.id}"
     click_link "Add Favorite"
+
     expect(page).to have_content("Favorites: 2")
 
     visit "/favorites"
@@ -127,7 +130,6 @@ RSpec.describe "As a vistor When I have added a pet to my favorite list" do
       approximate_age: "51",
       sex: "male"
     )
-
     visit "/favorites"
 
     expect(page).to have_content("You have no favorite pets 💔")

@@ -2,8 +2,13 @@ require 'rails_helper'
 
 RSpec.describe "shelter page", type: :feature do
   it "Can click on shelter name to reload shelter show page" do
-    shelter_1 = Shelter.create(name: "Denver Animal Shelter", address: "1241 W Bayaud Ave", city: "Denver", state: "CO", zip: "80223")
-
+    shelter_1 = Shelter.create(
+      name: "Denver Animal Shelter",
+      address: "1241 W Bayaud Ave",
+      city: "Denver",
+      state: "CO",
+      zip: "80223"
+    )
     visit "/shelters/#{shelter_1.id}"
     click_link "#{shelter_1.name}"
 
@@ -11,8 +16,13 @@ RSpec.describe "shelter page", type: :feature do
   end
 
   it "can show individual shelters with their details" do
-    shelter_1 = Shelter.create(name: "Denver Animal Shelter", address: "1241 W Bayaud Ave", city: "Denver", state: "CO", zip: "80223")
-
+    shelter_1 = Shelter.create(
+      name: "Denver Animal Shelter",
+      address: "1241 W Bayaud Ave",
+      city: "Denver",
+      state: "CO",
+      zip: "80223"
+    )
     visit "/shelters/#{shelter_1.id}"
 
     expect(page).to have_content(shelter_1.name)
@@ -23,9 +33,20 @@ RSpec.describe "shelter page", type: :feature do
   end
 
   it 'I can delete a shelter and all its pets go with it' do
-    shelter_1 = Shelter.create(name: "Denver Animal Shelter", address: "1241 W Bayaud Ave", city: "Denver", state: "CO", zip: "80223")
-    shelter_2 = Shelter.create(name: "Aurora Animal Shelter", address: "15750 E 32nd Ave", city: "Aurora", state: "CO", zip: "80011")
-
+    shelter_1 = Shelter.create(
+      name: "Denver Animal Shelter",
+      address: "1241 W Bayaud Ave",
+      city: "Denver",
+      state: "CO",
+      zip: "80223"
+    )
+    shelter_2 = Shelter.create(
+      name: "Aurora Animal Shelter",
+      address: "15750 E 32nd Ave",
+      city: "Aurora",
+      state: "CO",
+      zip: "80011"
+    )
     pet_1 = shelter_1.pets.create(
       image: "https://upload.wikimedia.org/wikipedia/commons/f/f1/Jack_Russell_Terrier_1.jpg",
       name: "Spot",
@@ -40,9 +61,7 @@ RSpec.describe "shelter page", type: :feature do
       description: "A dog",
       sex: "male"
     )
-
     visit "/shelters/#{shelter_1.id}"
-
     click_link 'Delete'
 
     expect(current_path).to eq('/shelters')
@@ -50,6 +69,7 @@ RSpec.describe "shelter page", type: :feature do
     expect(page).to have_content(shelter_2.name)
 
     visit "/pets"
+
     expect(page).to_not have_content(pet_1.name)
     expect(page).to have_content(pet_2.name)
   end
@@ -61,15 +81,13 @@ RSpec.describe "shelter page", type: :feature do
       city: "Denver",
       state: "CO", zip: "80223"
     )
-
     pet_1 = shelter_1.pets.create(
       image: "https://upload.wikimedia.org/wikipedia/commons/f/f1/Jack_Russell_Terrier_1.jpg",
       name: "Spot",
       approximate_age: "5",
       sex: "male"
     )
-
-    app_1 = PetApplication.create(
+    PetApplication.create(
       name: 'Steve',
       address: '123 Main St',
       city: 'Lakewood',
@@ -79,8 +97,7 @@ RSpec.describe "shelter page", type: :feature do
       description: 'I like dogs and will take great care of it.',
       pet_ids: [pet_1.id]
     )
-
-    app_2 = PetApplication.create(
+    PetApplication.create(
       name: 'Brian',
       address: '123 Main St',
       city: 'Lakewood',
@@ -90,7 +107,6 @@ RSpec.describe "shelter page", type: :feature do
       description: 'I like dogs and will take great care of it.',
       pet_ids: [pet_1.id]
     )
-
     app_to_pet_1 = ApplicationPet.find_by(pet_id: pet_1.id)
     app_to_pet_1.approve
 
@@ -106,20 +122,18 @@ RSpec.describe "shelter page", type: :feature do
       city: "Denver",
       state: "CO", zip: "80223"
     )
-
-    pet_1 = shelter_1.pets.create(
+    shelter_1.pets.create(
       image: "https://upload.wikimedia.org/wikipedia/commons/f/f1/Jack_Russell_Terrier_1.jpg",
       name: "Spot",
       approximate_age: "5",
       sex: "male"
     )
-    pet_2 = shelter_1.pets.create(
+    shelter_1.pets.create(
       image: "https://upload.wikimedia.org/wikipedia/commons/f/f1/Jack_Russell_Terrier_1.jpg",
       name: "S24rt",
       approximate_age: "5",
       sex: "male"
     )
-
     visit "/shelters/#{shelter_1.id}"
 
     expect(page).to have_content("Total Pets: 2")
@@ -150,7 +164,6 @@ RSpec.describe "shelter page", type: :feature do
       image: "http://www.wikipedia.com/1234.jpg",
       rating: 3
     )
-
     visit "/shelters/#{shelter_1.id}"
 
     expect(page).to have_content("Average Rating: 2.0")
@@ -161,7 +174,6 @@ RSpec.describe "shelter page", type: :feature do
       image: "http://www.wikipedia.com/1234.jpg",
       rating: 3
     )
-
     visit "/shelters/#{shelter_1.id}"
 
     expect(page).to have_content("Average Rating: 2.3")
@@ -174,7 +186,6 @@ RSpec.describe "shelter page", type: :feature do
       city: "Denver",
       state: "CO", zip: "80223"
     )
-
     pet_1 = shelter_1.pets.create(
       image: "https://upload.wikimedia.org/wikipedia/commons/f/f1/Jack_Russell_Terrier_1.jpg",
       name: "Spot",
@@ -184,7 +195,6 @@ RSpec.describe "shelter page", type: :feature do
     visit "/shelters/#{shelter_1.id}"
 
     expect(page).to have_content("Applications on File: 0")
-
 
     PetApplication.create(
       name: 'Steve',
@@ -216,7 +226,13 @@ RSpec.describe "shelter page", type: :feature do
   end
 
   it "there is a navigation link to shelter index and pet index" do
-    shelter_1 = Shelter.create(name: "Denver Animal Shelter", address: "1241 W Bayaud Ave", city: "Denver", state: "CO", zip: "80223")
+    shelter_1 = Shelter.create(
+      name: "Denver Animal Shelter",
+      address: "1241 W Bayaud Ave",
+      city: "Denver",
+      state: "CO",
+      zip: "80223"
+    )
     visit "/shelters/#{shelter_1.id}"
     click_on "All Shelters"
     expect(page).to have_current_path "/shelters"

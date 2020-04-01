@@ -4,7 +4,6 @@ RSpec.describe 'As a visitor' do
   describe 'When I visit the new shelter form by clicking a link in the index' do
     it "I can create a new shelter" do
       visit "/shelters"
-
       click_on 'New Shelter'
 
       expect(page).to have_current_path "/shelters/new"
@@ -14,7 +13,6 @@ RSpec.describe 'As a visitor' do
       fill_in 'City', with: 'Denver'
       fill_in 'State', with: 'CO'
       fill_in 'Zip', with: '80223'
-
       click_on 'Create Shelter'
 
       expect(page).to have_current_path "/shelters"
@@ -23,7 +21,6 @@ RSpec.describe 'As a visitor' do
 
     it "I am prompted to enter required missing information when creating a shelter" do
       visit "/shelters"
-
       click_on 'New Shelter'
 
       expect(page).to have_current_path "/shelters/new"
@@ -33,7 +30,6 @@ RSpec.describe 'As a visitor' do
       # fill_in 'City', with: 'Denver'
       fill_in 'State', with: 'CO'
       fill_in 'Zip', with: '80223'
-
       click_on 'Create Shelter'
 
       within "ul.missing-fields" do
