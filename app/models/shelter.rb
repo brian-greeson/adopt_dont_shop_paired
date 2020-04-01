@@ -10,4 +10,9 @@ class Shelter < ApplicationRecord
   def pet_count
     pets.count
   end
+
+  def average_rating
+    return 0.0 if shelter_reviews.empty?
+    shelter_reviews.average(:rating)
+  end
 end
