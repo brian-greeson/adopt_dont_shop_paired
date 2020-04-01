@@ -10,7 +10,7 @@ Adopted don't shop is a web application designed to store animal shelters and th
 ## Installation
 - Clone github repo
 - Run
- - `bundle install`
+  - `bundle install`
   - `rails db:create`
   - `rails db:migrate`
 
