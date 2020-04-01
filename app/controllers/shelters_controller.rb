@@ -34,7 +34,7 @@ class SheltersController < ApplicationController
       redirect_to "/shelters/#{@shelter.id}"
     else
       flash.now[:incomplete_form] = @shelter.errors.messages.keys
-      render :new
+      render :edit
     end
   end
 
