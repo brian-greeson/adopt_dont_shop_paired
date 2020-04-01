@@ -8,14 +8,12 @@ RSpec.describe "As a visitor when I visit the application show page" do
       city: "Denver",
       state: "CO", zip: "80223"
     )
-
     pet_1 = shelter_1.pets.create(
       image: "https://upload.wikimedia.org/wikipedia/commons/f/f1/Jack_Russell_Terrier_1.jpg",
       name: "Spot",
       approximate_age: "5",
       sex: "male"
     )
-
     app_1 = PetApplication.create(
       name: 'Steve',
       address: '123 Main St',
@@ -26,10 +24,9 @@ RSpec.describe "As a visitor when I visit the application show page" do
       description: 'I like dogs and will take great care of it.',
       pet_ids: [pet_1.id]
     )
-
     visit "/pet_applications/#{app_1.id}"
-
     click_link "#{app_1.name}"
+
     expect(current_path).to eq("/pet_applications/#{app_1.id}")
   end
 
@@ -40,14 +37,12 @@ RSpec.describe "As a visitor when I visit the application show page" do
       city: "Denver",
       state: "CO", zip: "80223"
     )
-
     pet_1 = shelter_1.pets.create(
       image: "https://upload.wikimedia.org/wikipedia/commons/f/f1/Jack_Russell_Terrier_1.jpg",
       name: "Spot",
       approximate_age: "5",
       sex: "male"
     )
-
     app_1 = PetApplication.create(
       name: 'Steve',
       address: '123 Main St',
@@ -58,7 +53,6 @@ RSpec.describe "As a visitor when I visit the application show page" do
       description: 'I like dogs and will take great care of it.',
       pet_ids: [pet_1.id]
     )
-
     visit "/pet_applications/#{app_1.id}"
 
     within("section.application-#{app_1.id}-details") do
@@ -83,7 +77,6 @@ RSpec.describe "As a visitor when I visit the application show page" do
       city: "Denver",
       state: "CO", zip: "80223"
     )
-
     pet_1 = shelter_1.pets.create(
       image: "https://upload.wikimedia.org/wikipedia/commons/f/f1/Jack_Russell_Terrier_1.jpg",
       name: "Spot",
@@ -91,7 +84,6 @@ RSpec.describe "As a visitor when I visit the application show page" do
       sex: "male",
       description: "abc"
     )
-
     pet_2 = shelter_1.pets.create(
       image: "https://upload.wikimedia.org/wikipedia/commons/f/f1/Jack_Russell_Terrier_2.jpg",
       name: "Tops",
@@ -99,7 +91,6 @@ RSpec.describe "As a visitor when I visit the application show page" do
       sex: "female",
       description: "abc"
     )
-
     app_1 = PetApplication.create(
       name: 'Steve',
       address: '123 Main St',
@@ -110,7 +101,6 @@ RSpec.describe "As a visitor when I visit the application show page" do
       description: 'I like dogs and will take great care of it.',
       pet_ids: [pet_1.id, pet_2.id]
     )
-
     app_2 = PetApplication.create(
       name: 'Brian',
       address: '1ew2e Main St',
@@ -121,7 +111,6 @@ RSpec.describe "As a visitor when I visit the application show page" do
       description: 'I hate dogs and will take great care of it.',
       pet_ids: [pet_1.id, pet_2.id]
     )
-
     visit "/pet_applications/#{app_1.id}"
 
     within "section.application-#{app_1.id}-pets" do
@@ -150,14 +139,12 @@ RSpec.describe "As a visitor when I visit the application show page" do
       city: "Denver",
       state: "CO", zip: "80223"
     )
-
     pet_1 = shelter_1.pets.create(
       image: "https://upload.wikimedia.org/wikipedia/commons/f/f1/Jack_Russell_Terrier_1.jpg",
       name: "Spot",
       approximate_age: "5",
       sex: "male"
     )
-
     app_1 = PetApplication.create(
       name: 'Steve',
       address: '123 Main St',
@@ -168,7 +155,6 @@ RSpec.describe "As a visitor when I visit the application show page" do
       description: 'I like dogs and will take great care of it.',
       pet_ids: [pet_1.id]
     )
-
     app_2 = PetApplication.create(
       name: 'Brian',
       address: '123 Main St',
@@ -179,7 +165,6 @@ RSpec.describe "As a visitor when I visit the application show page" do
       description: 'I like dogs and will take great care of it.',
       pet_ids: [pet_1.id]
     )
-
     app_to_pet_1 = ApplicationPet.find_by(pet_id: pet_1.id)
     app_to_pet_1.approve
     visit "/pet_applications/#{app_1.id}"
@@ -202,14 +187,12 @@ RSpec.describe "As a visitor when I visit the application show page" do
       city: "Denver",
       state: "CO", zip: "80223"
     )
-
     pet_1 = shelter_1.pets.create(
       image: "https://upload.wikimedia.org/wikipedia/commons/f/f1/Jack_Russell_Terrier_1.jpg",
       name: "Spot",
       approximate_age: "5",
       sex: "male"
     )
-
     app_1 = PetApplication.create(
       name: 'Steve',
       address: '123 Main St',
@@ -220,7 +203,6 @@ RSpec.describe "As a visitor when I visit the application show page" do
       description: 'I like dogs and will take great care of it.',
       pet_ids: [pet_1.id]
     )
-
     app_2 = PetApplication.create(
       name: 'Brian',
       address: '123 Main St',
@@ -231,7 +213,6 @@ RSpec.describe "As a visitor when I visit the application show page" do
       description: 'I like dogs and will take great care of it.',
       pet_ids: [pet_1.id]
     )
-
     app_to_pet_1 = ApplicationPet.find_by(pet_id: pet_1.id)
     app_to_pet_1.approve
 

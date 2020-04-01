@@ -9,13 +9,10 @@ RSpec.describe "As a visitor", type: :feature do
       state: "CO",
       zip: "80223"
     )
-
     visit "/shelters/#{shelter_1.id}"
-
     click_on "Add Review"
 
     expect(current_path).to eq("/shelters/#{shelter_1.id}/reviews/new")
-
   end
 
   describe "When I visit the shelter review page I see a form to create a review" do
@@ -27,15 +24,14 @@ RSpec.describe "As a visitor", type: :feature do
         state: "CO",
         zip: "80223"
       )
-
       visit "/shelters/#{shelter_1.id}/reviews/new"
 
       fill_in :title, with: 'Go Marge!'
       select 5, from: :rating
       fill_in :content, with: "This is the best shelter ever! Marge at the front desk is the best ever!"
       fill_in :image, with: "https://s3.amazonaws.com/petcoach-api-prod-uploads/uploads/noslidesarticleimages/0a4d267ac1b94cdc12690b7f503822bf.jpg"
-
       click_button "Submit Review"
+
       expect(current_path).to eq("/shelters/#{shelter_1.id}")
       expect(page).to have_content('Marge')
     end
@@ -48,13 +44,11 @@ RSpec.describe "As a visitor", type: :feature do
         state: "CO",
         zip: "80223"
       )
-
       visit "/shelters/#{shelter_1.id}/reviews/new"
 
       select 5, from: :rating
       fill_in :content, with: "This is the best shelter ever! Marge at the front desk is the best ever!"
       fill_in :image, with: "https://s3.amazonaws.com/petcoach-api-prod-uploads/uploads/noslidesarticleimages/0a4d267ac1b94cdc12690b7f503822bf.jpg"
-
       click_button "Submit Review"
 
       expect(page).to have_content('Please include a title and content for your review.')
@@ -69,13 +63,11 @@ RSpec.describe "As a visitor", type: :feature do
         state: "CO",
         zip: "80223"
       )
-
       visit "/shelters/#{shelter_1.id}/reviews/new"
 
       fill_in :title, with: 'Go Marge!'
       select 5, from: :rating
       fill_in :image, with: "https://s3.amazonaws.com/petcoach-api-prod-uploads/uploads/noslidesarticleimages/0a4d267ac1b94cdc12690b7f503822bf.jpg"
-
       click_button "Submit Review"
 
       expect(page).to have_content('Please include a title and content for your review.')

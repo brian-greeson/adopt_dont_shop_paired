@@ -112,5 +112,4 @@ describe Pet, type: :model do
       expect(pet_1.approved_application).to eq(app_2)
     end
   end
-
 end

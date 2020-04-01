@@ -14,7 +14,6 @@ RSpec.describe "As a visitor when I have added pets to my favorites list" do
       approximate_age: "5",
       sex: "male"
     )
-
     visit "/pets/#{pet_1.id}"
     click_link "Add Favorite"
 
@@ -45,7 +44,6 @@ RSpec.describe "As a visitor when I have added pets to my favorites list" do
       approximate_age: "3",
       sex: "male"
     )
-
     visit "/pets/#{pet_1.id}"
     click_link "Add Favorite"
 
@@ -53,7 +51,6 @@ RSpec.describe "As a visitor when I have added pets to my favorites list" do
     click_link "Add Favorite"
 
     visit ("/pet_applications/new")
-
     fill_in :name, with: 'Steve'
     fill_in :address, with: '123 Main St'
     fill_in :city, with: 'Lakewood'
@@ -61,11 +58,9 @@ RSpec.describe "As a visitor when I have added pets to my favorites list" do
     fill_in :zip, with: '80214'
     fill_in :phone_number, with: '9705675555'
     fill_in :description, with: 'I like dogs and will take great care of it.'
-
     find(:css, "#pet_ids_[value='#{pet_1.id}']").set(true)
-
-
     click_button "Submit Application"
+
     expect(current_path).to eq("/favorites")
     expect(page).to have_content("Your application has been received! 🏠")
 
@@ -87,12 +82,10 @@ RSpec.describe "As a visitor when I have added pets to my favorites list" do
       approximate_age: "5",
       sex: "male"
     )
-
     visit "/pets/#{pet_1.id}"
     click_link "Add Favorite"
 
     visit ("/pet_applications/new")
-
     fill_in :name, with: ''
     fill_in :address, with: '123 Main St'
     fill_in :city, with: ''
@@ -100,10 +93,9 @@ RSpec.describe "As a visitor when I have added pets to my favorites list" do
     fill_in :zip, with: '80214'
     fill_in :phone_number, with: '9705675555'
     fill_in :description, with: 'I like dogs and will take great care of it.'
-
     find(:css, "#pet_ids_[value='#{pet_1.id}']").set(true)
-
     click_button "Submit Application"
+    
     expect(page).to have_content("Please fill out the entire form.")
     expect(page).to have_selector('input[type=submit]')
   end
