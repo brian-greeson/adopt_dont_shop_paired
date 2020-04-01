@@ -73,5 +73,46 @@ describe Shelter, type: :model do
 
       expect(shelter_1.pet_count).to eq(2)
     end
+
+    it ".average_rating" do
+      shelter_1 = Shelter.create(
+        name: "Denver Animal Shelter",
+        address: "1241 W Bayaud Ave",
+        city: "Denver",
+        state: "CO", zip: "80223"
+      )
+
+      expect(shelter_1.average_rating).to eq(0.0)
+
+      shelter_1.shelter_reviews.create(
+        title: "My review",
+        content: "tacoTacotaco",
+        image: "http://www.wikipedia.com/1234.jpg",
+        rating: 1
+      )
+      shelter_1.shelter_reviews.create(
+        title: "My review",
+        content: "tacoTacotaco",
+        image: "http://www.wikipedia.com/1234.jpg",
+        rating: 2
+      )
+      shelter_1.shelter_reviews.create(
+        title: "My review",
+        content: "tacoTacotaco",
+        image: "http://www.wikipedia.com/1234.jpg",
+        rating: 3
+      )
+
+      expect(shelter_1.average_rating).to eq(2.0)
+
+      shelter_1.shelter_reviews.create(
+        title: "My review",
+        content: "tacoTacotaco",
+        image: "http://www.wikipedia.com/1234.jpg",
+        rating: 3
+      )
+
+      expect(shelter_1.average_rating).to eq(2.25)
+    end
   end
 end

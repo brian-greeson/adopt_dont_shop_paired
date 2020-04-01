@@ -116,6 +116,48 @@ RSpec.describe "shelter page", type: :feature do
     expect(page).to have_content("Total Pets: 2")
   end
 
+  it "There is the average shelter review rating" do
+    shelter_1 = Shelter.create(
+      name: "Denver Animal Shelter",
+      address: "1241 W Bayaud Ave",
+      city: "Denver",
+      state: "CO", zip: "80223"
+    )
+    shelter_1.shelter_reviews.create(
+      title: "My review",
+      content: "tacoTacotaco",
+      image: "http://www.wikipedia.com/1234.jpg",
+      rating: 1
+    )
+    shelter_1.shelter_reviews.create(
+      title: "My review",
+      content: "tacoTacotaco",
+      image: "http://www.wikipedia.com/1234.jpg",
+      rating: 2
+    )
+    shelter_1.shelter_reviews.create(
+      title: "My review",
+      content: "tacoTacotaco",
+      image: "http://www.wikipedia.com/1234.jpg",
+      rating: 3
+    )
+
+    visit "/shelters/#{shelter_1.id}"
+
+    expect(page).to have_content("Average Rating: 2.0")
+
+    shelter_1.shelter_reviews.create(
+      title: "My review",
+      content: "tacoTacotaco",
+      image: "http://www.wikipedia.com/1234.jpg",
+      rating: 3
+    )
+
+    visit "/shelters/#{shelter_1.id}"
+
+    expect(page).to have_content("Average Rating: 2.3")
+  end
+
   it "there is a navigation link to shelter index and pet index" do
     shelter_1 = Shelter.create(name: "Denver Animal Shelter", address: "1241 W Bayaud Ave", city: "Denver", state: "CO", zip: "80223")
     visit "/shelters/#{shelter_1.id}"
